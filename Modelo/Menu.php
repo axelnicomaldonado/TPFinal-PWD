@@ -1,11 +1,11 @@
 <?php
 
 class Menu {
-    private $idMenu;        //Primaria
-    private $meNombre;      //Nombre del item del menu
-    private $meDescripcion; //Descripcion mas detallada del item del menu
-    private $objMenu;       //Referencia al id del menu que es subitem
-    private $meDeshabilitado; //Fecha en la que el menu fue deshabilitado por ultima vez
+    private $idMenu;            //Primaria
+    private $meNombre;          //Nombre del item del menu
+    private $meDescripcion;     //Descripcion mas detallada del item del menu
+    private $objMenu;           //Referencia al id del menu que es subitem
+    private $meDeshabilitado;   //Fecha en la que el menu fue deshabilitado por ultima vez
     private $mensajeOperacion;
 
     public function __construct(){
