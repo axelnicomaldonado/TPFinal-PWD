@@ -155,7 +155,7 @@ class Menu {
         }
         return $resp;
     }
-    
+
 
     public function eliminar(){
         $resp = false;
@@ -204,10 +204,10 @@ class Menu {
     }
 
     public function setear($idMenu, $meNombre, $meDescripcion, $ObjMenu, $meDeshabilitado){
-        $this->setIdmenu($idMenu);
-        $this->setMenombre($meNombre);
-        $this->setMedescripcion($meDescripcion);
-        $this->setObjmenu($ObjMenu);
-        $this->setMedeshabilitado($meDeshabilitado);
+        $this->setIdMenu($idMenu);
+        $this->setMeNombre($meNombre);
+        $this->setMeDescripcion($meDescripcion);
+        $this->setObjMenu($ObjMenu);
+        $this->setMeDeshabilitado($meDeshabilitado);
     }
 }
