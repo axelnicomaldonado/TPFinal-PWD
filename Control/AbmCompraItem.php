@@ -1,19 +1,17 @@
 <?php
-class AbmCompraEstado{
+class AbmCompraItem{
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return CompraEstado
+     * @return CompraItem
      */
     private function cargarObjeto($param){
-        $obj = null;      
-        if (array_key_exists('idCompraEstado',$param) && array_key_exists('idCompra',$param)
-        && array_key_exists('idCompraEstadoTipo',$param) && array_key_exists('ceFechaIni',$param)
-        && array_key_exists('ceFechaFin',$param)){
-            $obj = new CompraEstado();
-            $obj->setear($param['idCompraEstado'], $param['idCompra'], $param['idCompraEstadoTipo'], 
-            $param['ceFechaIni'], $param['ceFechaFin']);
+        $obj = null;
+        if (array_key_exists('idCompraItem',$param) && array_key_exists('objProducto',$param)
+        && array_key_exists('objCompra',$param) && array_key_exists('ciCantidad',$param)){
+            $obj = new CompraItem();
+            $obj->setear($param['idCompraItem'], $param['objProducto'], $param['objCompra'], $param['ciCantidad']);
         }
         return $obj;
     }
@@ -21,14 +19,14 @@ class AbmCompraEstado{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return CompraEstado
+     * @return CompraItem
      */
     private function cargarObjetoConClave($param){
         $obj = null;
         
-        if( isset($param['idCompraEstado']) ){
-            $obj = new CompraEstado();
-            $obj->setear($param['idCompra'], null, null, null, null);
+        if( isset($param['idCompraItem']) ){
+            $obj = new CompraItem();
+            $obj->setear($param['idCompraItem'], null, null, null, null);
         }
         return $obj;
     }
@@ -41,7 +39,7 @@ class AbmCompraEstado{
     
      private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idCompraEstado']))
+        if (isset($param['idCompraItem']))
             $resp = true;
         return $resp;
     }
@@ -52,7 +50,7 @@ class AbmCompraEstado{
      */
     public function alta($param){
         $resp = false;
-        $param['idCompraEstado'] = null;
+        $param['idCompraItem'] = null;
         $objCompraEstado = $this->cargarObjeto($param);
         // verEstructura($objCompraEstado);
         if ($objCompraEstado!=null && $objCompraEstado->insertar()){
@@ -103,20 +101,19 @@ class AbmCompraEstado{
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if(isset($param['idCompraEstado'])) $where.=" and idcompraestado = ".$param['idCompraEstado'];
-            if(isset($param['objCompra'])) $where.=" and idcompra =".$param['objCompra']['idCompra'];
-            if(isset($param['objCompraEstadoTipo'])) $where.=" and idcompraestadotipo =".$param['objCompraEstadoTipo']['idCompraEstadoTipo'];
-            if(isset($param['ceFechaIni'])) $where.=" and cefechaini ='".$param['ceFechaIni']."'";
-            if(isset($param['ceFechaFin'])) $where.=" and cefechafin ='".$param['ceFechaFin']."'";
+            if(isset($param['idCompraItem'])) $where.=" and idcompraitem = ".$param['idCompraItem'];
+            if(isset($param['objProducto'])) $where.=" and idproducto =".$param['objProducto']['idproducto'];
+            if(isset($param['objCompra'])) $where.=" and idcompra =".$param['objCompra']['idcompra'];
+            if(isset($param['ciCantidad'])) $where.=" and cicantidad =".$param['ciCantidad'];
         }
 
-        $arreglo = CompraEstado::listar($where);
+        $arreglo = CompraItem::listar($where);
         return $arreglo;
     }
+
 }
 
-    //private $idCompraEstado;
+    //private $idCompraItem;
+    //private $objProducto;
     //private $objCompra;
-    //private $objCompraEstadoTipo;
-    //private $ceFechaIni;
-    //private $ceFechaFin;
+    //private $ciCantidad;
