@@ -4,105 +4,161 @@ class AbmUsuario{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return Usuario
+     * @return Tabla
      */
     private function cargarObjeto($param){
-        $obj = null;      
-        if (array_key_exists('idUsuario',$param) && array_key_exists('usNombre',$param) 
-        && array_key_exists('usPass',$param) && array_key_exists('usMail',$param) && 
-        array_key_exists('usDeshabilitado',$param)){
+        $obj = null;
+    //SELECT `idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado` FROM `usuario` WHERE 1
+           
+        if( array_key_exists('idusuario',$param)  and array_key_exists('usnombre',$param) and array_key_exists('uspass',$param)
+        and array_key_exists('usmail',$param) and array_key_exists('usdeshabilitado',$param)){
             $obj = new Usuario();
-            $obj->setear($param['idUsuario'], $param['usNombre'], $param['usPass'], $param['usMail'], 
-            $param['usDeshabilitado']);
+            $obj->setear($param['idusuario'],$param['usnombre'],$param['uspass'],$param['usmail'],$param['usdeshabilitado']);
         }
         return $obj;
     }
-
+    
     /**
+     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return Usuario
+     * @return Tabla
      */
+    
     private function cargarObjetoConClave($param){
         $obj = null;
-        if( isset($param['idUsuario']) ){
-            $objUsuario = new Usuario();
-            $objUsuario -> setear($param['idUsuario'], null, null);
+        if( isset($param['idusuario']) ){
+            $obj = new Usuario();
+            $obj->setear($param['idusuario'], null,null,null,null);
         }
         return $obj;
     }
-
+    
+    
     /**
+     * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
      */
+    
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idUsuario']))
+        if (isset($param['idusuario']))
             $resp = true;
         return $resp;
     }
-
-    /**
-     * @param array $param
-     */
+    
     public function alta($param){
         $resp = false;
-        $objUsuario = $this->cargarObjeto($param);
-        if ($objUsuario!=null && $objUsuario->insertar()){
+        $param['idusuario'] =null;
+        $elObjtTabla = $this->cargarObjeto($param);
+//        verEstructura($elObjtTabla);
+        if ($elObjtTabla!=null and $elObjtTabla->insertar()){
             $resp = true;
+            
         }
         return $resp;
         
     }
 
+    public function borrar_rol($param){
+        $resp = false;
+        if(isset($param['idusuario']) && isset($param['idrol'])){
+            $elObjtTabla = new UsuarioRol();
+            $elObjtTabla->setearConClave($param['idusuario'],$param['idrol']);
+            $resp = $elObjtTabla->eliminar();
+            
+        }
+       
+        return $resp;
+        
+    }
+
+    public function alta_rol($param){
+        $resp = false;
+        if(isset($param['idusuario']) && isset($param['idrol'])){
+            $elObjtTabla = new UsuarioRol();
+            $elObjtTabla->setearConClave($param['idusuario'],$param['idrol']);
+            $resp = $elObjtTabla->insertar();
+           
+
+        }
+       
+        return $resp;
+        
+    }
     /**
+     * permite eliminar un objeto 
      * @param array $param
      * @return boolean
      */
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario = $this->cargarObjetoConClave($param);
-            if ($objUsuario!=null && $objUsuario->eliminar()){
+            $elObjtTabla = $this->cargarObjetoConClave($param);
+            if ($elObjtTabla!=null and $elObjtTabla->eliminar()){
                 $resp = true;
             }
         }
+        
         return $resp;
     }
-
+    
     /**
+     * permite modificar un objeto
      * @param array $param
      * @return boolean
      */
     public function modificacion($param){
+        //echo "Estoy en modificacion";
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $objUsuario = $this->cargarObjeto($param);
-            if($objUsuario!=null && $objUsuario->modificar()){
+            $elObjtTabla = $this->cargarObjeto($param);
+            if($elObjtTabla!=null and $elObjtTabla->modificar()){
                 $resp = true;
             }
         }
         return $resp;
     }
 
+    public function darRoles($param){
+        $where = " true ";
+        if ($param<>NULL){
+            if  (isset($param['idusuario']))
+                $where.=" and idusuario =".$param['idusuario'];
+            if  (isset($param['idrol']))
+                 $where.=" and idrol ='".$param['idrol']."'";
+        }
+        $obj = new UsuarioRol();
+        $arreglo = $obj->listar($where);
+        //echo "Van ".count($arreglo);
+        return $arreglo;
+    }
+
+    
     /**
+     * permite buscar un objeto
      * @param array $param
-     * @return boolean
+     * @return array
      */
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if(isset($param['idUsuario'])) $where.=" and idUsuario = ".$param['idUsuario'];
-            if(isset($param['usNombre'])) $where.=" and usNombre ='".$param['usNombre']."'";
-            if(isset($param['usPass'])) $where.=" and usPass =".$param['usPass'];
-            if(isset($param['usMail'])) $where.=" and usMail ='".$param['usMail']."'";
-            if(isset($param['usDeshabilitado'])) $where.=" and usDeshabilitado ='".$param['usDeshabilitado']."'"; //revisar (es un timestamp)
+            if  (isset($param['idusuario']))
+                $where.=" and idusuario =".$param['idusuario'];
+            if  (isset($param['usnombre']))
+                 $where.=" and usnombre ='".$param['usnombre']."'";
+            if  (isset($param['uspass']))
+                 $where.=" and uspass ='".$param['uspass']."'";
+            if  (isset($param['usmail']))
+                 $where.=" and usmail ='".$param['usmail']."'";
+            if  (isset($param['usdeshabilitado']))
+                 $where.=" and usdeshabilitado is null";
         }
-
-        $objUsuario = new Usuario;
-        $arreglo = $objUsuario->listar($where);
-
+        $obj = new Usuario();
+        $arreglo = $obj->listar($where);
+        //echo "Van ".count($arreglo);
         return $arreglo;
     }
-
+    
 }
+?>
