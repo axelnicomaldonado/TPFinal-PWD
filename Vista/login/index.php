@@ -15,7 +15,7 @@ $datos = data_submitted();
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2 class="mb-4">Inicio de Sesión</h2>
-        <form action="accion.php" method="post">
+        <form action="../accion/accionLoginLogout.php" method="post">
         <input id="accion" name ="accion" value="login" type="hidden">
           <div class="mb-3">
             <label for="usnombre" class="form-label">Usuario:</label>
