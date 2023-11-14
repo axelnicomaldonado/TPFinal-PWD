@@ -1,3 +1,6 @@
+<?php
+include_once("../../configuracion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -15,8 +18,10 @@
       </ul>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Iniciar Sesion</button>
-        <button type="button" class="btn btn-primary">Registrarse</button>
+      <form action="../accion/accionLoginOrRegister.php" method="post">
+        <button type="submit" class="btn btn-outline-primary me-2" name="accion" value="goLogin">Iniciar Sesion</button>
+        <button type="sumbit" class="btn btn-primary" name="accion" value="goRegister">Registrarse</button>
+      </form>
       </div>
     </header>
 </body>
