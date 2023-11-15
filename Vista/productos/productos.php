@@ -1,5 +1,5 @@
 <?php
-include_once('../estructura/header.php');
+include_once("../../configuracion.php");
 
 $producto = new AbmProducto;
 $productos = $producto->buscar(null);
