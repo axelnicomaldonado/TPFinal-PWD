@@ -1,5 +1,5 @@
 <?php
-include_once '../estructura/header.php';
+include_once("../../configuracion.php");
 
 $datos = data_submitted($_GET);
 
