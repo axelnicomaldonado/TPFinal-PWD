@@ -14,9 +14,9 @@ class AbmProducto{
     private function cargarObjeto($param){
         $obj = null;      
         if (array_key_exists('idProducto',$param) && array_key_exists('proNombre',$param) 
-        && array_key_exists('proDetalle',$param) && array_key_exists('proCantStock',$param)){
+        && array_key_exists('proDetalle',$param) && array_key_exists('proCantStock',$param) && array_key_exists('proPrecio', $param)){
             $obj = new Producto();
-            $obj->setear($param['idProducto'], $param['proNombre'], $param['proDetalle'], $param['proCantStock']);
+            $obj->setear($param['idProducto'], $param['proNombre'], $param['proDetalle'], $param['proCantStock'], $param['proPrecio']);
         }
         return $obj;
     }
@@ -29,7 +29,7 @@ class AbmProducto{
         $obj = null;
         if( isset($param['idProducto']) ){
             $objProducto = new Producto();
-            $objProducto -> setear($param['idProducto'], null, null);
+            $objProducto -> setear($param['idProducto'], null, null, null, null);
         }
         return $obj;
     }
@@ -89,23 +89,23 @@ class AbmProducto{
         return $resp;
     }
 
-    /**
-     * @param array $param
-     * @return boolean
-     */
-    public function buscar($param){
-        $where = " true ";
-        if ($param<>NULL){
-            if(isset($param['idProducto'])) $where.=" and idproducto = ".$param['idProducto'];
-            if(isset($param['proNombre'])) $where.=" and pronombre =".$param['proNombre'];
-            if(isset($param['proDetalle'])) $where.=" and prodetalle ='".$param['proDetalle']."'";
-            if(isset($param['proCantStock'])) $where.=" and procantStock =".$param['proCantStock'];
-        }
-
-        $objProducto = new Producto;
-        $arreglo = $objProducto->listar($where);
-
-        return $arreglo;
+/**
+ * @param array $param
+ * @return boolean
+ */
+public function buscar($param){
+    $where = " true ";
+    if ($param <> NULL){
+        if (isset($param['idProducto'])) $where .= " and idproducto = " . $param['idProducto'];
+        if (isset($param['proNombre'])) $where .= " and pronombre = '" . $param['proNombre'] . "'";
+        if (isset($param['proDetalle'])) $where .= " and prodetalle = '" . $param['proDetalle'] . "'";
+        if (isset($param['proCantStock'])) $where .= " and procantStock = " . $param['proCantStock'];
     }
+
+    $objProducto = new Producto();
+    $arreglo = $objProducto->listar($where);
+
+    return $arreglo;
+}
 
 }

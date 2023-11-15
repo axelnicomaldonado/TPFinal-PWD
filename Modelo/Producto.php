@@ -5,18 +5,23 @@ class Producto {
     private $proNombre;
     private $proDetalle;
     private $proCantStock;
+    private $proPrecio;
     private $mensajeOperacion;
 
     public function __construct(){
         $this->idProducto = 0;
         $this->proNombre = "";      //El nombre se guarda como int en la BD ¿?
-        $this->prodetalle = "";
-        $this->procantstock = 0;
-        $this->mensajeoperacion="";
+        $this->proDetalle = "";
+        $this->proCantStock = 0;
+        $this->proPrecio = 0;
+        $this->mensajeOperacion="";
     }
 
     public function getIdProducto(){
         return $this->idProducto;
+    }
+    public function getProPrecio(){
+        return $this->proPrecio;
     }
     
     public function getProNombre(){
@@ -39,7 +44,9 @@ class Producto {
     public function setIdProducto($idProducto){
         $this->idProducto = $idProducto;
     }
-    
+    public function setProPrecio($proPrecio){
+        $this->proPrecio = $proPrecio;
+    }
     public function setProNombre($proNombre){
         $this->proNombre = $proNombre;
     }
@@ -65,7 +72,7 @@ class Producto {
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock']);
+                    $this->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['proprecio']);
                     $resp = true;
                 }
             }
@@ -78,13 +85,13 @@ class Producto {
     public function insertar(){
 		$base=new BaseDatos();
 		$resp= false;
-		$sql="INSERT INTO producto(pronombre, prodetalle, procantstock)
-				VALUES ('".$this->getProNombre()."','".$this->getProDetalle()."','".$this->getProCantStock()."')";
+		$sql="INSERT INTO producto(pronombre, prodetalle, procantstock, proprecio)
+				VALUES ('".$this->getProNombre()."','".$this->getProDetalle()."','".$this->getProCantStock()."', '".$this->getProPrecio() ."' )";
 		if($base->Iniciar()){
             $id = $base->EjecutarInsert($sql);
 			if($id != null){
 			    $resp = true;
-				$this->setIdCompra($id);
+				$this->setIdProducto($id);
 			}else {
 				$this->setMensajeOperacion("producto->insertar: ".$base->getError());
 			}
@@ -98,7 +105,7 @@ class Producto {
         $resp = false;
         $base = new BaseDatos();
         $sql = "UPDATE producto SET pronombre = '".$this->getProNombre()."', prodetalle = '".$this->getProDetalle()."', 
-        procantstock = '".$this->getProCantStock(). "', WHERE idcompra = '" . $this->getIdCompra() . "'";
+        procantstock = '".$this->getProCantStock(). "', proprecio = '".$this->getProPrecio()(). "', WHERE idproducto = '" . $this->getIdProducto() . "'";
     
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
@@ -139,8 +146,8 @@ class Producto {
         if($res>-1){
             if($res>0){
                 while ($row = $base->Registro()){
-                    $obj= new Compra();
-                    $this->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock']);
+                    $obj= new Producto();
+                    $obj->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['proprecio']);
                     array_push($arreglo, $obj);
                 }
             }
@@ -150,10 +157,11 @@ class Producto {
         return $arreglo;
     }
 
-    public function setear($idProducto, $proNombre, $proDetalle, $proCantStock){
+    public function setear($idProducto, $proNombre, $proDetalle, $proCantStock, $proPrecio){
         $this->setIdProducto($idProducto);
         $this->setProNombre($proNombre);
         $this->setProDetalle($proDetalle);
         $this->setProcantStock($proCantStock);
+        $this->setProPrecio($proPrecio);
     }
 }
