@@ -1,5 +1,5 @@
 <?php
-include_once("../estructura/headerSeguro.php");
+include_once("../../configuracion.php");
 $datos = data_submitted();
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,8 @@ $datos = data_submitted();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio de Sesión</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-dfNb1hK4br2lMD4TIYyMq8ig4cYIi5m5UdmJ1oAzMWvE+maIExmGNMOjAZxZ7fC" crossorigin="anonymous">
+  <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
   <div class="container mt-5">
