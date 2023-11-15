@@ -30,11 +30,19 @@ include_once("../../configuracion.php");
         <li><a href="sobreMi.php">Sobre mi</a> </li>
         <li><a href="preguntasFrecuentes.php">Preguntas frecuentes</a> </li>
         <li><a href="contacto.php">Contacto</a> </li>
-        <img src="../imagenes/carrito.png" alt="" class="imgCart">
-        <a href="../login/index.php">
-          <img src="../imagenes/user.png" alt="user" class="imgUser">
-          </a>
 
+
+        <img src="../imagenes/carrito.png" alt="" class="imgCart">
+
+        <div class="dropdown-center">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="../imagenes/user.png" alt="user" class="imgUser">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../cliente/cuenta.php">Mi Cuenta</a></li>
+            <li><a class="dropdown-item" href="Aca va el logout">Cerrar Sessión</a></li>
+          </ul>
+        </div>
       </ul>
     </nav>
 

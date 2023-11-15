@@ -1,5 +1,5 @@
 <?php
-include_once("../estructura/cabeceraNoSegura.php");
+include_once("../estructura/headerSeguro.php");
 $datos = data_submitted();
 ?>
 <!DOCTYPE html>
