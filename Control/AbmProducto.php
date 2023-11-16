@@ -52,9 +52,13 @@ class AbmProducto{
         $resp = false;
         $param['idProducto'] =null;
         $objProducto = $this->cargarObjeto($param);
-        if ($objProducto!=null && $objProducto->insertar()){
-            $resp = true;
+        if($objProducto!=null){
+            $resp = $objProducto->insertar();
         }
+        //if ($objProducto!=null && $resp){
+        //    $resp = $param['idProducto'];
+        //}
+        //echo print_r($resp);
         return $resp;
         
     }

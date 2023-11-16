@@ -4,9 +4,9 @@ include_once "../../configuracion.php";
 $abmProducto = new AbmProducto;
 
 $datos = data_submitted();
-echo print_r($datos);
 
 if($abmProducto->baja($datos)){
+    unlink('../imagenes/productos/' . $datos['idProducto'] . '.png');
     ?>
         <p style="text-align: center; color: green">El producto se elimino correctamente</p>
     <?php

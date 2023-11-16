@@ -84,6 +84,7 @@ class Producto {
 
     public function insertar(){
 		$base=new BaseDatos();
+        $id = false;
 		$resp= false;
 		$sql="INSERT INTO producto(pronombre, prodetalle, procantstock, proprecio)
 				VALUES ('".$this->getProNombre()."','".$this->getProDetalle()."','".$this->getProCantStock()."', '".$this->getProPrecio() ."' )";
@@ -98,7 +99,7 @@ class Producto {
 		} else {
 				$this->setMensajeOperacion("producto->insertar: ".$base->getError());
 		}
-		return $resp;
+		return $id;
 	}
 
     public function modificar(){

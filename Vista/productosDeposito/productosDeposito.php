@@ -14,6 +14,7 @@ $datos = data_submitted();
 <html>
 
     <head>
+    <link href="../css/deposito.css" rel="stylesheet">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
     </head>
@@ -50,13 +51,13 @@ $datos = data_submitted();
                 <div class="mb-1">
                     <label class="form-label" for="proPrecio">Precio:</label>
                     <br/>
-                    <input class="form-control" required type="number" id="proPrecio" name="proPrecio"/>
+                    <input step="0.01" class="form-control" required type="number" id="proPrecio" name="proPrecio"/>
                     <br/>
                 </div>
                 <div class="mb-1">
                     <label class="form-label" for="foto">Foto:</label>
                     <br/>
-                    <input class="form-control" required type="file" accept="image/png, image/jpeg"/>
+                    <input class="form-control" id="foto" name="foto" required type="file" accept="image/png"/>
                     <br/>
                 </div>
                 <input type="submit" class="btn btn-primary" value="enviar"/>
@@ -69,7 +70,9 @@ $datos = data_submitted();
         <div class="col-md-6">
             <h2 class="mb-4">Eliminar producto</h2>
             <form method="get" action="../accion/accionEliminarProducto.php">
-                <input class="form-control" type="number" id="idProducto" name="idProducto"/>
+                <label class="form-label" for="idProducto">Id del producto:</label>
+                <br/>
+                <input required class="form-control" type="number" id="idProducto" name="idProducto"/>
                 <br/>
                 <input type="submit" class="btn btn-primary" value="enviar"/>
             </form>
@@ -78,29 +81,28 @@ $datos = data_submitted();
 
     <div class="verProductos">
         <h2> Productos </h2>
-        <?php
+            <?php
 
-            if (count($productos) > 0) {
-                foreach ($productos as $producto) {
+                if (count($productos) > 0) {
+                    foreach ($productos as $producto) {
 
-                    echo "<div class='producto'>";
-                    echo "<p>" . $producto->getProNombre() . "</p>";
-                    echo "foto";
-                    echo '<br/>';
-                    echo "$" . $producto->getProPrecio();
-                    echo "<br/>";
-                    echo "<p>" . $producto->getProCantStock() . " unidades</P>";
-                    echo "<br/>";
-                    echo "<p>id: " . $producto->getIdProducto() . "</P>";
-                    echo "</div>";
+                        echo "<div class='producto'>";
+                        echo "<p>" . $producto->getProNombre() . "</p>";
+                        echo "<img width='250' height='150' src='../imagenes/productos/" . $producto->getIdProducto() . ".png' />";
+                        echo '<br/>';
+                        echo "$" . $producto->getProPrecio();
+                        echo "<br/>";
+                        echo "<p>" . $producto->getProCantStock() . " unidades <br/>";
+                        echo "id: " . $producto->getIdProducto() . "</P>";
+                        echo "</div>";
 
+                    }
+                } else{
+                    echo "<h4>No hay productos cargados</h4>";
                 }
-            } else{
-                echo "<h4>No hay productos cargados</h4>";
-            }
 
-        ?>
-
+            ?>
+        
     </div>
 
 <script>
