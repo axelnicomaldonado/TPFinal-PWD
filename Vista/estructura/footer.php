@@ -1,15 +1,20 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+            <div class="contacto d-flex justify-content-between flex-row">
+            <ul class="list-unstyled d-flex" style="color: black">
+            <li class="ms-2 fa-lg" style="font-family: Times New Roman; margin-top: 10px">Contacto:</li>
+            <li class="ms-3"><i class="fa-brands fa-square-instagram fa-xl"></i></li>
+            <li class="ms-3"><i class="fa-brands fa-square-facebook fa-xl"></i></li>
+            <li class="ms-3"><i class="fa-brands fa-square-whatsapp fa-xl"></i></li>
+            <li class="ms-3"><i class="fa-solid fa-square-envelope fa-xl"></i>
+            </ul>
+        </div>
+        <div class="direccion flex-row-inversed">
+            <ul class="list-unstyled d-flex" style="color: black">
+            <li class="ms-3"><i class="fa-solid fa-location-dot fa-lg"></i></li>
+            <li class="ms-2 fa-lg" style="font-family: Times New Roman; margin-top: 12px">Dirección: Mendoza 537</li>
+            </ul>
+        </div>
         </div>
 
         </div>
