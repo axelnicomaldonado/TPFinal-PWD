@@ -88,7 +88,7 @@ class Producto {
 		$sql="INSERT INTO producto(pronombre, prodetalle, procantstock, proprecio)
 				VALUES ('".$this->getProNombre()."','".$this->getProDetalle()."','".$this->getProCantStock()."', '".$this->getProPrecio() ."' )";
 		if($base->Iniciar()){
-            $id = $base->EjecutarInsert($sql);
+            $id = $base->Ejecutar($sql);
 			if($id != null){
 			    $resp = true;
 				$this->setIdProducto($id);
@@ -105,7 +105,7 @@ class Producto {
         $resp = false;
         $base = new BaseDatos();
         $sql = "UPDATE producto SET pronombre = '".$this->getProNombre()."', prodetalle = '".$this->getProDetalle()."', 
-        procantstock = '".$this->getProCantStock(). "', proprecio = '".$this->getProPrecio()(). "', WHERE idproducto = '" . $this->getIdProducto() . "'";
+        procantstock = '".$this->getProCantStock(). "', proprecio = '".$this->getProPrecio(). "' where idproducto = " . $this->getIdProducto();
     
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {

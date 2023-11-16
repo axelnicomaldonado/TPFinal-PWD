@@ -28,8 +28,8 @@ class AbmProducto{
     private function cargarObjetoConClave($param){
         $obj = null;
         if( isset($param['idProducto']) ){
-            $objProducto = new Producto();
-            $objProducto -> setear($param['idProducto'], null, null, null, null);
+            $obj = new Producto();
+            $obj -> setear($param['idProducto'], null, null, null, null);
         }
         return $obj;
     }
