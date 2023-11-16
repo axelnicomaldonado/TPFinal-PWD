@@ -1,16 +1,15 @@
 <?php
 include_once("../../configuracion.php");
 $obj = new Session();
+$objUserRol = new AbmUsuarioRol();
 $resp = $obj->validar();
 $listRol = $obj->getRol();
 if($resp) {
-    $i = 0;
-    while ($listRol[$i]->getobjusuario()->getidusuario() != $_SESSION["idusuario"]) {
-        $i++;
+    if($listRol[0]->getobjrol()->getIdRol() == 2){
+        include_once("../estructura/estAdmin/headerAdmin.php");
     }
-    $archivoIncluir = [ 2 => "../estructura/estAdmin/headerAdmin.php", 3 => "../estructura/estDeposito/headerDeposito.php",];
-    if($listRol[$i]->getobjusuario()->getidusuario() == 2 || $listRol[$i]->getobjusuario()->getidusuario() == 3){
-        include_once($archivoIncluir[$listRol[$i]->getobjusuario()->getidusuario()]);
+    elseif ($listRol[0]->getobjrol()->getIdRol() == 3) {
+        include_once("../estructura/estDeposito/headerDeposito.php");
     }
     else{
         $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
