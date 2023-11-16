@@ -45,7 +45,7 @@ class Rol {
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['idRol'], $row['roDescripcion']);
+                    $this->setear($row['idrol'], $row['rodescripcion']);
                     
                 }
             }
@@ -58,7 +58,7 @@ class Rol {
     public function insertar(){
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO rol(idRol,roDescripcion)
+        $sql = "INSERT INTO rol(idrol,rodescripcion)
             VALUES(".$this->getIdRol().",'".$this->getRoDescripcion()."');";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
@@ -75,7 +75,7 @@ class Rol {
     public function modificar(){
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE rol SET roDescripcion='" . $this->getRoDescripcion() . "' WHERE idRol=" . $this->getIdRol();
+        $sql = "UPDATE rol SET rodescripcion='" . $this->getRoDescripcion() . "' WHERE idrol=" . $this->getIdRol();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -91,7 +91,7 @@ class Rol {
     public function eliminar(){
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM rol WHERE idRol=" .$this->getIdRol();
+        $sql = "DELETE FROM rol WHERE idrol=" .$this->getIdRol();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -118,7 +118,7 @@ class Rol {
                 
                 while ($row = $base->Registro()){
                     $obj= new Rol();
-                    $obj->setear($row['idRol'], $row['roDescripcion']); 
+                    $obj->setear($row['idrol'], $row['rodescripcion']); 
                     array_push($arreglo, $obj);
                 }
             }
