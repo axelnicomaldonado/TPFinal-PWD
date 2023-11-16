@@ -9,15 +9,15 @@ if (isset($datos['accion'])){
         $resp = $obj->iniciar($datos['usnombre'],$datos['uspass']);
         if($resp) {
             $listRol = $obj->getRol();
-            $i = 0;
-            while ($listRol[$i]->getobjusuario()->getidusuario() != $_SESSION["idusuario"]) {
-            $i++;
+            if($listRol[0]->getobjrol()->getIdRol() == 2 || $listRol[0]->getobjrol()->getIdRol() == 3){
+                echo("<script>location.href = '../home/panel.php';</script>");
             }
-            if($listRol[$i]->getobjusuario()->getidusuario() == 1 || $listRol[$i]->getobjusuario()->getidusuario() == 4){
+            elseif ($listRol[0]->getobjrol()->getIdRol() == 1 || $listRol[0]->getobjrol()->getIdRol() == 4) {
                 echo("<script>location.href = '../home/index.php';</script>");
             }
             else{
-                echo("<script>location.href = '../home/panel.php';</script>");
+                $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
+                echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
             }
         } else {
             $mensaje ="Error, vuelva a intentarlo";
@@ -36,3 +36,4 @@ if (isset($datos['accion'])){
 }
 
 ?>
+
