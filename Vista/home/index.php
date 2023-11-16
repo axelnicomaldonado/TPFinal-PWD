@@ -1,19 +1,15 @@
 <?php
 include_once("../../configuracion.php");
 $obj = new Session();
+$objUserRol = new AbmUsuarioRol();
 $resp = $obj->validar();
+$listRol = $obj->getRol();
 if($resp) {
-    $listRol = $obj->getRol();
-    $i = 0;
-    while ($listRol[$i]->getobjusuario()->getidusuario() != $_SESSION["idusuario"]) {
-        $i++;
-    }
-    $archivoIncluir = [ 1 => "../estructura/estCliente/headerCliente.php",];
-    if($listRol[$i]->getobjusuario()->getidusuario() == 1 || $listRol[$i]->getobjusuario()->getidusuario() == 4){
-        include_once($archivoIncluir[$listRol[$i]->getobjusuario()->getidusuario()]);
+    if($listRol[0]->getobjrol()->getIdRol() == 1){
+        include_once("../estructura/estCliente/headerCliente.php");
     }
     else{
-        $mensaje ="Error, acceso solo para cliente o publico. Inicie sesion como cliente para continuar";
+        $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
         echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
     }
 } else {
