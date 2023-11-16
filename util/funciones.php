@@ -1,5 +1,6 @@
 <?php
 
+
 function data_submitted() {
     $_AAux= array();
     if (!empty($_POST))
@@ -36,5 +37,9 @@ spl_autoload_register(function ($clase) {
 
 
 });
+
+define("KEY_TOKEN", "AwT.3GC-5w3");
+
+
 
 ?>

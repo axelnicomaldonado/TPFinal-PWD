@@ -1,9 +1,12 @@
 <?php
 class Session{
 
-    public function __construct(){
-        session_start();
-      }
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            // Inicia la sesión solo si no está activa
+            session_start();
+        }
+    }
    
     /**
      * Actualiza las variables de sesión con los valores ingresados.

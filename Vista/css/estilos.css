@@ -85,7 +85,16 @@ body {
 .imgCart{
     height: 1.4em;
     margin-left: .5em;
+
+}
+.carritoHeader{
     cursor: pointer;
+    text-decoration: none;
+    color:#000
+}
+.carritoHeader:hover{
+    color: inherit;
+    text-decoration: none;
 }
 
 .cardContainer {
@@ -164,3 +173,22 @@ display: flex;
     border: 1px solid grey;
 
 }
+
+.imgCarrito{
+    width: 3.5em;
+    margin-right: 1em;
+}
+
+td {
+    padding: 8px;
+    vertical-align: middle; /* Centrar verticalmente */
+}
+.carritoContainer{
+
+    border: 1px solid grey;
+    padding: 2em;
+    width: 70%;
+    margin: auto;
+    margin-top: 4em;
+}
+
