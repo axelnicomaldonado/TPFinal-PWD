@@ -44,8 +44,9 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
                 <tbody>
             <?php
 
-            $stringProductosCompra = '';
+            
             foreach ($listadoCompra as $compra) {
+                $stringProductosCompra = '';
                 $total = 0;
                 foreach($listadoCompraItem as $compraItem){
                     if($compraItem->getObjCompra()->getIdCompra() == $compra->getIdCompra()){

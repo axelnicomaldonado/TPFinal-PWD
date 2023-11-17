@@ -184,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
     let eliminaModal = document.getElementById('eliminaModal');
     if (eliminaModal) {
         eliminaModal.addEventListener('show.bs.modal', function (event) {
@@ -191,5 +192,22 @@ document.addEventListener('DOMContentLoaded', function () {
             let id = button.getAttribute('data-bs-id');
             let buttonElimina = eliminaModal.querySelector('.modal-footer #btn-elimina');
             buttonElimina.value = id;
+
+            // Agregar un event listener para el clic en el botón de eliminación
+            buttonElimina.addEventListener('click', function () {
+                // Lógica para eliminar el producto del carrito
+                eliminarProductoDelCarrito(id);
+
+                // Cerrar el modal después de la eliminación
+                let modal = bootstrap.Modal.getInstance(eliminaModal);
+                modal.hide();
+            });
         });
     }
+
+    // Función para eliminar el producto del carrito (deberías adaptarla según tu lógica)
+    function eliminarProductoDelCarrito(idProducto) {
+        // Agrega aquí la lógica para eliminar el producto del carrito
+        console.log('Eliminando producto del carrito con ID:', idProducto);
+    }
+});
