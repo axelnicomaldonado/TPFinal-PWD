@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $compraEstadoTipo = new AbmCompraEstadoTipo();
         $tiposEstado = $compraEstadoTipo->buscar(null);
         $datos['idCompraEstadoTipo'] = $tiposEstado[0]->getIdCompraEstadoTipo();
-        var_dump($tiposEstado[0]);
+        
         $compraEstado = new AbmCompraEstado();
 
         $compraEstado->alta($datos);

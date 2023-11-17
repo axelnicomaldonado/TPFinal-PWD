@@ -64,5 +64,4 @@ if($resp) {
 </div>
 
 <?php
-var_dump($_SESSION)
 ?>

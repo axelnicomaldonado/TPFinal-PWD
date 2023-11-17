@@ -8,7 +8,7 @@ class AbmCompraEstado{
      */
     private function cargarObjeto ($param){
         $obj = null;
-        echo 'Para verificar si llego bien los datos al cargarObjeto: '; var_dump($param);
+        ($param);
         if (array_key_exists('idCompra',$param) and
             array_key_exists('idCompraEstadoTipo',$param))
         {
@@ -67,7 +67,7 @@ class AbmCompraEstado{
      * @param array $param
      */
     public function alta($param){
-        echo 'Para verificar si llego bien los datos al alta: '; var_dump($param);
+     
         $resp = false;
         $param['idCompraEstado'] = null;
         $objCompraEstado = $this->cargarObjeto($param);

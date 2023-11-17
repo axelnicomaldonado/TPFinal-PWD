@@ -99,7 +99,7 @@ class CompraEstado{
 				VALUES ('".$this->getObjCompra()->getIdCompra()."','".$this->getObjCompraEstadoTipo()->getIdCompraEstadoTipo().
                 "')";
 
-        var_dump($sql);
+        
 		if($base->Iniciar()){
             $id = $base->Ejecutar($sql);
 			if($id != null){
