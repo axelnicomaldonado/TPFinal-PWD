@@ -78,9 +78,8 @@ class Usuario{
     public function insertar(){
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO usuario(idusuario,usnombre,uspass,usmail,usdeshabilitado)
-            VALUES(".$this->getidusuario().",'".$this->getusnombre()."',".$this->getuspass().",'".$this->getusmail().
-            "','".$this->getusdeshabilitado()."');";
+        $sql = "INSERT INTO usuario(usnombre,uspass,usmail)
+            VALUES('".$this->getusnombre()."',".$this->getuspass().",'".$this->getusmail()."');";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -97,8 +96,7 @@ class Usuario{
         $resp = false;
         $base = new BaseDatos(); //*PARCHE* en la consulta, estaban intercambiados el nombre y el apellido, no se de donde viene la confusion
         $sql = "UPDATE usuario SET usnombre='" . $this->getusnombre() . "', uspass=" . $this->getuspass() .
-     ", usmail='" . $this->getusmail() . "', usdeshabilitado='" . $this->getusdeshabilitado() . 
-     "' WHERE idusuario=" . $this->getidusuario();
+        ", usmail='" . $this->getusmail() . "' WHERE idusuario=" . $this->getidusuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
