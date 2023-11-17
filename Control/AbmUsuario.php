@@ -11,9 +11,9 @@ class AbmUsuario{
     //SELECT `idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado` FROM `usuario` WHERE 1
            
         if( array_key_exists('idusuario',$param)  and array_key_exists('usnombre',$param) and array_key_exists('uspass',$param)
-        and array_key_exists('usmail',$param) and array_key_exists('usdeshabilitado',$param)){
+        and array_key_exists('usmail',$param)){
             $obj = new Usuario();
-            $obj->setear($param['idusuario'],$param['usnombre'],$param['uspass'],$param['usmail'],$param['usdeshabilitado']);
+            $obj->setear($param['idusuario'],$param['usnombre'],$param['uspass'],$param['usmail'],null);
         }
         return $obj;
     }
@@ -86,6 +86,17 @@ class AbmUsuario{
         return $resp;
         
     }
+
+    public function actualizarRol($param){
+        $resp = false;
+        if(isset($param['idusuario']) && isset($param['idrol'])){
+            $amb = new AbmUsuarioRol();
+            $resp = $amb->modificacion($param) ;  
+
+        }
+        return $resp;  
+    }
+
     /**
      * permite eliminar un objeto 
      * @param array $param
@@ -159,5 +170,6 @@ class AbmUsuario{
         //echo "Van ".count($arreglo);
         return $arreglo;
     }
+    
 }
 ?>

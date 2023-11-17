@@ -68,7 +68,8 @@ class UsuarioRol {
     public function insertar(){
         $resp = false;
         $base = new BaseDatos();
-        $sql="INSERT INTO usuariorol(idrol,idusuario)  VALUES(".$this->getobjrol()->getidrol().",".$this->getobjusuario()->getidusuario().");";
+        $sql="INSERT INTO usuariorol(idusuario,idrol)  
+        VALUES(".$this->getobjusuario()->getidusuario().",".$this->getobjrol()->getIdRol().");";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                // $this->setidrol($elid);
@@ -82,8 +83,19 @@ class UsuarioRol {
         return $resp;
     }
     
-      public function modificar(){
+    public function modificar(){
         $resp = false;
+        $base=new BaseDatos();
+        $sql = "UPDATE usuariorol SET idrol = " . $this->getobjrol()->getIdRol() . " WHERE idusuario = " . $this->getobjusuario()->getidusuario();
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
+                $resp = true;
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+        } else {
+            $this->setmensajeoperacion($base->getError());
+        }
         return $resp;
     }
 
