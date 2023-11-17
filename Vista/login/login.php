@@ -18,17 +18,20 @@ $datos = data_submitted();
       <div class="col-md-6">
         <h2 class="mb-4">Inicio de Sesión</h2>
         <form action="../accion/accionLoginLogout.php" method="post">
-        <input id="accion" name ="accion" value="login" type="hidden">
-          <div class="mb-3">
-            <label for="usnombre" class="form-label">Usuario:</label>
-            <input type="text" class="form-control" id="usnombre" name="usnombre" required>
-          </div>
-          <div class="mb-3">
-            <label for="uspass" class="form-label">Contraseña:</label>
-            <input type="password" class="form-control" id="uspass" name="uspass" required autocomplete="off">
-          </div>
-          <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </form>
+    <input id="accion" name="accion" value="login" type="hidden">
+    <div class="mb-3">
+        <label for="usnombre" class="form-label">Usuario:</label>
+        <input type="text" class="form-control" id="usnombre" name="usnombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="uspass" class="form-label">Contraseña:</label>
+        <input type="password" class="form-control" id="uspass" name="uspass" required autocomplete="off">
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+
+<p>¿No tienes una cuenta? <a href="../register/register.php">Regístrate aquí</a>.</p>
+
         
         <?php 
           if(isset($datos) && isset($datos['msg']) && $datos['msg']!=null) {
