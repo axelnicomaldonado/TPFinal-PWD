@@ -159,25 +159,5 @@ class AbmUsuario{
         //echo "Van ".count($arreglo);
         return $arreglo;
     }
-
-    //Permite la búsqueda de un usuario a partir de su ID.
-    
-    public function buscarUsuario($param){
-        $where = " true ";
-        $claves = ["id","nombre","pass","mail","deshabilitado"];
-        $db = ["idusuario", "usnombre", "uspass", "usmail", "usdeshabilitado"];
-
-        if ($param<>null){
-            for($i = 0; $i < count($claves); $i++){
-                if(isset($param[$claves[$i]])){
-                    $where.= " and " . $db[$i] . " = '". $param[$claves[$i]]  ."'";
-                }
-            }
-        }
-        $obj = new Usuario();
-        $arreglo = $obj->listar($where);
-        return $arreglo;
-    }
-    
 }
 ?>
