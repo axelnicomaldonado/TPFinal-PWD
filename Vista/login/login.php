@@ -1,5 +1,6 @@
 <?php
 include_once("../../configuracion.php");
+include_once("../estructura/estPublico/headerPublico.php");
 $datos = data_submitted();
 ?>
 <!DOCTYPE html>

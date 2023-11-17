@@ -1,5 +1,10 @@
 <?php
+
+$titulo = 'Detalle del producto';
 include_once("../../configuracion.php");
+include_once("../estructura/estPublico/headerPublico.php");
+
+
 
 $datos = data_submitted($_GET);
 
@@ -55,13 +60,18 @@ if ($id == '' || $token == '') {
                 <h3 class="precioDetalle">$<?php echo number_format($precio, 2, ',', '.'); ?> </h3>
                 <div class="d-grid gap-3 col-10 mx-auto botones">
                     <button class="btn btn-dark" type="button">Comprar ahora</button>
-                    <button class="btn btn-outline-dark" type="button">Agregar al carrito</button>
+                    <button class="btn btn-outline-dark" type="button" onclick="agregarProducto(<?php echo $id ?>, '<?php echo $token_tmp ?>')">Agregar al carrito</button>
                 </div>
             </div>
 
 
 
-        </div>
 
+        </div>
+            <?php
+            $id = session_id();
+            echo $id;
+
+            ?>
     </div>
 </main>
