@@ -73,10 +73,10 @@ class Compra{
     public function insertar(){
 		$base=new BaseDatos();
 		$resp= false;
-		$sql="INSERT INTO compra(cofecha,idusuario)
-				VALUES ('".$this->getCoFecha()."','".$this->getObjUsuario()->getIdUsuario()."')";
+		$sql="INSERT INTO compra(idusuario)
+				VALUES ('".$this->getObjUsuario()->getIdUsuario()."')";
 		if($base->Iniciar()){
-            $id = $base->EjecutarInsert($sql);
+            $id = $base->Ejecutar($sql);
 			if($id != null){
 			    $resp = true;
 				$this->setIdCompra($id);
@@ -149,10 +149,10 @@ class Compra{
     }
 
     
-    public function setear($idCompra, $coFecha, $objUsuario){
+    public function setear($idCompra, $coFecha, $objUsuario)
+    {
         $this->setIdCompra($idCompra);
         $this->setCoFecha($coFecha);
         $this->setObjUsuario($objUsuario);
     }
-
 }

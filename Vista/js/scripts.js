@@ -101,7 +101,7 @@ function actualizaCantidad(cantidad, id) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     let eliminaModal = document.getElementById('eliminaModal');
     eliminaModal.addEventListener('show.bs.modal', function (event) {
         let button = event.relatedTarget;
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonElimina.value = id;
     });
 });
-
+*/
 function elimina() {
     console.log("Inicio de la función actualizaCantidad");
 
@@ -139,3 +139,57 @@ function elimina() {
         console.error("Error en la solicitud:", error);
     });
 }
+
+
+/*
+const successModal = document.getElementById('successModal');
+successModal.addEventListener('hidden.bs.modal', function () {
+    // Redirigir al index.php después de cerrar el modal
+    window.location.href = '../home/index.php';
+});*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const successModal = document.getElementById('successModal');
+
+    if (successModal) {
+        successModal.addEventListener('hidden.bs.modal', function () {
+            // Redirigir al index.php después de cerrar el modal
+            window.location.href = '../home/index.php';
+        });
+
+        const comprarBtn = document.getElementById('comprarBtn');
+        if (comprarBtn) {
+            comprarBtn.addEventListener('click', function () {
+                // Solo realiza la compra cuando se hace clic en el botón "Comprar"
+                let url = "../cliente/accion/accionComprar.php";
+                let formData = new FormData();
+                formData.append("action", "comprar");
+
+                fetch(url, {
+                    method: "POST",
+                    body: formData,
+                    mode: "cors",
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Respuesta del servidor:", data);
+                    if (data.ok) {
+                        console.log(data);
+                    }
+                });
+            });
+        }
+
+        console.log('Código adicional después de cerrar el modal...');
+    }
+});
+
+    let eliminaModal = document.getElementById('eliminaModal');
+    if (eliminaModal) {
+        eliminaModal.addEventListener('show.bs.modal', function (event) {
+            let button = event.relatedTarget;
+            let id = button.getAttribute('data-bs-id');
+            let buttonElimina = eliminaModal.querySelector('.modal-footer #btn-elimina');
+            buttonElimina.value = id;
+        });
+    }

@@ -8,10 +8,18 @@ class AbmCompra{
      */
     private function cargarObjeto($param){
         $obj = null;      
-        if (array_key_exists('idCompra',$param) && array_key_exists('coFecha',$param)
-        && array_key_exists('idUsuario',$param)){
+        if (array_key_exists('objUsuario',$param)){
+            /*$obj = new Compra();
+            $obj->setear($param['objUsuario']); CODIGO MIO MAL HECHO */
             $obj = new Compra();
-            $obj->setear($param['idCompra'], $param['coFecha'], $param['idUsuario']);
+            $abmUsuario = new AbmUsuario();
+            $array = [];
+            $array ['idUsuario'] = $param['idUsuario'];
+            $listaUsuarios = $abmUsuario -> buscar($array);
+            $objUsuario = $listaUsuarios [0];
+            $idCompra = $param ['idCompra'];
+            $coFecha = $param ['coFecha'];
+            $obj -> setear ($idCompra, $coFecha, $objUsuario);
         }
         return $obj;
     }
@@ -51,6 +59,8 @@ class AbmCompra{
     public function alta($param){
         $resp = false;
         $param['idCompra'] = null;
+        /*echo 'ESTOS SON LOS PARAMETROS ENVIADOS HASTA ALTA';
+        var_dump($param);*/
         $objCompra = $this->cargarObjeto($param);
         // verEstructura($objCompra);
         if ($objCompra!=null && $objCompra->insertar()){

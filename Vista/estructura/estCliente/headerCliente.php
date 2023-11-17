@@ -1,13 +1,23 @@
+
+
+<?php
+include_once('../../configuracion.php');
+$obj = new Session();
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../css/estilos.css">
+  <script src="../js/scripts.js"></script>
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
-  <title><?php $titulo ?></title>
+  <title><?php echo $titulo ?></title>
 </head>
 
 <body>
@@ -27,13 +37,25 @@
         <li><a href="sobreMi.php">Sobre mi</a> </li>
         <li><a href="preguntasFrecuentes.php">Preguntas frecuentes</a> </li>
         <li><a href="contacto.php">Contacto</a> </li>
-        <img src="../imagenes/carrito.png" alt="" class="imgCart">
-        <a href="../login/login.php">
-          <img src="../imagenes/user.png" alt="user" class="imgUser">
+        <a href="../cliente/carrito.php" class="carritoHeader">
+        <img   src="../imagenes/carrito.png" alt="" class="imgCart">
+        <span id="contadorCarrito"><?php echo isset($_SESSION['numero']) ? $_SESSION['numero'] : 0; ?></span>
         </a>
-        <form action="../accion/accionLoginLogout.php" method="post">
-        <li><button type="sumbit" name="accion" value="cerrar">Cerrar Sesion</button></li>
+
+<div class="dropdown-center">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="../imagenes/user.png" alt="user" class="imgUser">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../cliente/cuenta.php">Mi Cuenta</a></li>
+            <li>
+            <form action="../accion/accionLoginLogout.php" method="post">
+        <li><a class="dropdown-item" href="#"><button class="btn btn-dark-outline" id="botonCerrar"  type="sumbit" name="accion" value="cerrar">Cerrar Sesion</button></a></li>
         </form>
+            </li>
+          </ul>
+        </div>
+
       </ul>
     </nav>
 

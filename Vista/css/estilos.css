@@ -192,3 +192,11 @@ td {
     margin-top: 4em;
 }
 
+#botonCerrar {
+    background-color: inherit;
+    color: black
+}
+#botonCerrar:hover {
+    background-color: inherit;
+    color: white;
+}

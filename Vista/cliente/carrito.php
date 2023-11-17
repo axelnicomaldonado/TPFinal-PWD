@@ -1,26 +1,31 @@
 <?php
 include_once('../../configuracion.php');
 
-$obj = new Session();
 
+
+$obj = new Session();
+$objUserRol = new AbmUsuarioRol();
 $resp = $obj->validar();
+$listRol = $obj->getRol();
 if($resp) {
-    $listRol = $obj->getRol();
-    $i = 0;
-    while ($listRol[$i]->getobjusuario()->getidusuario() != $_SESSION["idusuario"]) {
-        $i++;
-    }
-    $archivoIncluir = [ 1 => "../estructura/estCliente/headerCliente.php",];
-    if($listRol[$i]->getobjusuario()->getidusuario() == 1 || $listRol[$i]->getobjusuario()->getidusuario() == 4){
-        $hrefBotonComprar = '../home/index.php'; //A COMPROBAR SI FUNCIONA
-        include_once($archivoIncluir[$listRol[$i]->getobjusuario()->getidusuario()]);
+    if($listRol[0]->getobjrol()->getIdRol() == 1){
+        $botonComprar = '<div class="row">
+        <div class="col-md-5 offset-md-7 d-grid gap-2">
+            <a href="../home/index.php" class="btn btn-outline-success btn-lg" id="comprarBtn" data-bs-toggle="modal" data-bs-target="#successModal">Comprar</a>
+        </div>
+    </div>';
+        include_once("../estructura/estCliente/headerCliente.php");
     }
     else{
-        $mensaje ="Error, acceso solo para cliente o publico. Inicie sesion como cliente para continuar";
+        $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
         echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
     }
 } else {
-    $hrefBotonComprar = '../login/login.php';
+    $botonComprar = '<div class="row">
+    <div class="col-md-5 offset-md-7 d-grid gap-2">
+        <a href="../login/login.php" class="btn btn-outline-success btn-lg" >Comprar</a>
+    </div>
+</div>';
     include_once("../estructura/estPublico/headerPublico.php");
 }
 
@@ -74,7 +79,7 @@ var_dump($listaCarrito);
                         if(!file_exists($imagenProducto)){
                             $imagenProducto = "../imagenes/default.jpg";
                         } 
-                        $cantidad = $productoItem['cantidad'];
+                        $cantidad = $_SESSION['carrito']['productos'][$idProducto];
                         $precio = $productoItem[0]->getProPrecio();
                         $subTotal = $cantidad * $precio;
                         $total += $subTotal;
@@ -112,11 +117,13 @@ var_dump($listaCarrito);
         </table>
     </div>
 
-<div class="row">
-    <div class="col-md-5 offset-md-7 d-grid gap-2">
-        <a href=<?php echo $hrefBotonComprar  ?> class="btn btn-outline-success btn-lg">Comprar</a>
-    </div>
-</div>
+<?php
+if($listaCarrito != null){
+
+
+ echo $botonComprar ;
+}
+?>
 
 </div>
 
@@ -139,3 +146,22 @@ var_dump($listaCarrito);
     </div>
   </div>
 </div>
+
+
+
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">¡Compra Exitosa!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Tu compra se ha realizado con éxito.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div> 
