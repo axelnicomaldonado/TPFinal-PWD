@@ -1,163 +1,155 @@
-<?php
-class AbmUsuario{
+<?php 
+class UsuarioRol {
+    private $objusuario;
+    private $objrol;
+   
+    
+    private $mensajeoperacion;
 
-    /**
-     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
-     * @param array $param
-     * @return Tabla
-     */
-    private function cargarObjeto($param){
-        $obj = null;
-    //SELECT `idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado` FROM `usuario` WHERE 1
-           
-        if( array_key_exists('idusuario',$param)  and array_key_exists('usnombre',$param) and array_key_exists('uspass',$param)
-        and array_key_exists('usmail',$param) and array_key_exists('usdeshabilitado',$param)){
-            $obj = new Usuario();
-            $obj->setear($param['idusuario'],$param['usnombre'],$param['uspass'],$param['usmail'],$param['usdeshabilitado']);
-        }
-        return $obj;
+   
+    public function __construct(){
+        $this->objusuario = new Usuario();
+        $this->objrol = new Rol();
+       }
+    public function setear($objusuario, $objrol)
+    {
+        $this->setobjusuario($objusuario);
+        $this->setobjrol($objrol);
+       
     }
-    
-    /**
-     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
-     * @param array $param
-     * @return Tabla
-     */
-    
-    private function cargarObjetoConClave($param){
-        $obj = null;
-        if( isset($param['idusuario']) ){
-            $obj = new Usuario();
-            $obj->setear($param['idusuario'], null,null,null,null);
-        }
-        return $obj;
+
+    public function setearConClave($idusuario, $idjrol)
+    {
+        $this->getobjrol()->setidrol($idjrol);
+        $this->getobjusuario()->setidusuario($idusuario);
     }
+
+    public function getobjusuario(){  return $this->objusuario;}
+    public function setobjusuario($objusuario){     $this->objusuario = $objusuario;    }
+    public function getobjrol(){      return $this->objrol;     }
+    public function setobjrol($objrol){  $this->objrol = $objrol;    }
     
-    
-    /**
-     * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
-     * @param array $param
-     * @return boolean
-     */
-    
-    private function seteadosCamposClaves($param){
+    public function getmensajeoperacion(){
+        return $this->mensajeoperacion;
+        
+    }
+    public function setmensajeoperacion($valor){
+        $this->mensajeoperacion = $valor;
+        
+    }
+    public function cargar(){
         $resp = false;
-        if (isset($param['idusuario']))
-            $resp = true;
+        $base = new BaseDatos();
+        $sql="SELECT * FROM usuariorol WHERE idrol = ".$this->getobjrol()->getidrol()." AND idusuario = ".$this->getobjusuario()->getidusuario().";";
+        if ($base->Iniciar()) {
+            $res = $base->Ejecutar($sql);
+            if($res>-1){
+                if($res>0){
+                    $row = $base->Registro();
+                    
+                    $obj1 = new Usuario();
+                    $obj1->setidusuario($row['idusuario']);
+                    $obj1->cargar();
+                    $obj2 = new Rol();
+                    $obj2->setidrol($row['idrol']);
+                    $obj2->cargar();
+                    $this->setear($obj1,$obj2);
+                    
+                }
+            }
+        } else {
+            $this->setmensajeoperacion($base->getError());
+        }
+        return $resp;
+    
+        
+    }
+    
+    public function insertar(){
+        $resp = false;
+        $base = new BaseDatos();
+        $sql="INSERT INTO usuariorol(idusuario,idrol)  
+        VALUES(".$this->getobjusuario()->getidusuario().",".$this->getobjrol()->getIdRol().");";
+        if ($base->Iniciar()) {
+            if ($elid = $base->Ejecutar($sql)) {
+               // $this->setidrol($elid);
+                $resp = true;
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+        } else {
+            $this->setmensajeoperacion($base->getError());
+        }
         return $resp;
     }
     
-    public function alta($param){
+    public function modificar(){
         $resp = false;
-        $param['idusuario'] =null;
-        $elObjtTabla = $this->cargarObjeto($param);
-//        verEstructura($elObjtTabla);
-        if ($elObjtTabla!=null and $elObjtTabla->insertar()){
-            $resp = true;
+        $base=new BaseDatos();
+        $sql = "UPDATE usuariorol SET idrol = " . $this->getobjrol()->getIdRol() . " WHERE idusuario = " . $this->getobjusuario()->getidusuario();
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
+                $resp = true;
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+        } else {
+            $this->setmensajeoperacion($base->getError());
+        }
+        return $resp;
+    }
+
+
+
+    public function eliminar(){
+        $resp = false;
+        $base = new BaseDatos();
+        $sql="DELETE FROM usuariorol WHERE idrol=".$this->getobjrol()->getidrol()." AND idusuario =".$this->getobjusuario()->getidusuario().";";
+        if ($base->Iniciar()) {
+            //echo $sql;
+            if ($base->Ejecutar($sql)) {
+                return true;
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+        } else {
+            $this->setmensajeoperacion($base->getError());
+        }
+        return $resp;
+    }
+     
+    public function listar($parametro=""){
+        $arreglo = array();
+        $base = new BaseDatos();
+        $sql="SELECT * FROM usuariorol ";
+        if ($parametro!="") {
+            $sql.='WHERE '.$parametro;
+        }
+        if ($base->Iniciar()) {
+           // echo $sql;
+        $res = $base->Ejecutar($sql);
+        if($res>-1){
+            if($res>0){
+                while ($row = $base->Registro()){
+                    $obj= new UsuarioRol();
+                    
+                    $obj->getobjusuario()->setidusuario($row['idusuario']);
+                    $obj->getobjrol()->setidrol($row['idrol']);
+                    $obj->cargar();
+                    array_push($arreglo, $obj);
+                }
+               
+            }
             
         }
-        return $resp;
-        
-    }
-
-    public function borrar_rol($param){
-        $resp = false;
-        if(isset($param['idusuario']) && isset($param['idrol'])){
-            $elObjtTabla = new UsuarioRol();
-            $elObjtTabla->setearConClave($param['idusuario'],$param['idrol']);
-            $resp = $elObjtTabla->eliminar();
-            
+        else {
+           $this->setmensajeoperacion($base->getError());
         }
-       
-        return $resp;
-        
-    }
-
-    public function alta_rol($param){
-        $resp = false;
-        if(isset($param['idusuario']) && isset($param['idrol'])){
-            $elObjtTabla = new UsuarioRol();
-            $elObjtTabla->setearConClave($param['idusuario'],$param['idrol']);
-            $resp = $elObjtTabla->insertar();
-           
-
         }
-       
-        return $resp;
-        
-    }
-    /**
-     * permite eliminar un objeto 
-     * @param array $param
-     * @return boolean
-     */
-    public function baja($param){
-        $resp = false;
-        if ($this->seteadosCamposClaves($param)){
-            $elObjtTabla = $this->cargarObjetoConClave($param);
-            if ($elObjtTabla!=null and $elObjtTabla->eliminar()){
-                $resp = true;
-            }
-        }
-        
-        return $resp;
-    }
-    
-    /**
-     * permite modificar un objeto
-     * @param array $param
-     * @return boolean
-     */
-    public function modificacion($param){
-        //echo "Estoy en modificacion";
-        $resp = false;
-        if ($this->seteadosCamposClaves($param)){
-            $elObjtTabla = $this->cargarObjeto($param);
-            if($elObjtTabla!=null and $elObjtTabla->modificar()){
-                $resp = true;
-            }
-        }
-        return $resp;
-    }
-
-    public function darRoles($param){
-        $where = " true ";
-        if ($param<>NULL){
-            if  (isset($param['idusuario']))
-                $where.=" and idusuario =".$param['idusuario'];
-            if  (isset($param['idrol']))
-                 $where.=" and idrol ='".$param['idrol']."'";
-        }
-        $obj = new UsuarioRol();
-        $arreglo = $obj->listar($where);
-        //echo "Van ".count($arreglo);
         return $arreglo;
     }
-
     
-    /**
-     * permite buscar un objeto
-     * @param array $param
-     * @return array
-     */
-    public function buscar($param){
-        $where = " true ";
-        if ($param<>NULL){
-            if  (isset($param['idusuario']))
-                $where.=" and idusuario =".$param['idusuario'];
-            if  (isset($param['usnombre']))
-                 $where.=" and usnombre ='".$param['usnombre']."'";
-            if  (isset($param['uspass']))
-                 $where.=" and uspass ='".$param['uspass']."'";
-            if  (isset($param['usmail']))
-                 $where.=" and usmail ='".$param['usmail']."'";
-            if  (isset($param['usdeshabilitado']))
-                 $where.=" and usdeshabilitado is null";
-        }
-        $obj = new Usuario();
-        $arreglo = $obj->listar($where);
-        //echo "Van ".count($arreglo);
-        return $arreglo;
-    }
 }
+
+
 ?>
