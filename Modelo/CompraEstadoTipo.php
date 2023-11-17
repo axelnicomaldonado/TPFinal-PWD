@@ -144,8 +144,8 @@ class CompraEstadoTipo{
     }
 
     public function setear($idCompraEstadoTipo, $cetDescripcion, $cetDetalle){
-        setIdCompraEstadoTipo($idCompraEstadoTipo);
-        setCetDescripcion($cetDescripcion);
-        setCetDetalle($cetDetalle);
+        $this->setIdCompraEstadoTipo($idCompraEstadoTipo);
+        $this->setCetDescripcion($cetDescripcion);
+        $this->setCetDetalle($cetDetalle);
     }
 }
