@@ -7,7 +7,7 @@ class AbmRol{
      */
     private function cargarObjeto($param){
         $obj = null;      
-        if (array_key_exists('idRol',$param) && array_key_exists('roDescripcion',$param)){
+        if (array_key_exists('idrol',$param) && array_key_exists('rodescripcion',$param)){
             $obj = new Rol();
             $obj->setear($param['idRol'], $param['roDescripcion']);
         }
@@ -20,9 +20,9 @@ class AbmRol{
     */
     private function cargarObjetoConClave($param){
         $obj = null;
-        if( isset($param['idRol']) ){
+        if( isset($param['idrol']) ){
             $objRol = new Rol();
-            $objRol -> setear($param['idRol'], null);
+            $objRol -> setear($param['idrol'], null);
         }
         return $obj;
     }
@@ -33,7 +33,7 @@ class AbmRol{
     */
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idRol']))
+        if (isset($param['idrol']))
             $resp = true;
         return $resp;
     }
@@ -87,8 +87,8 @@ class AbmRol{
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if(isset($param['idRol'])) $where.=" and idRol = ".$param['idRol'];
-            if(isset($param['roDescripcion'])) $where.=" and roDescripcion ='".$param['roDescripcion']."'";
+            if(isset($param['idrol'])) $where.=" and idrol = ".$param['idrol'];
+            if(isset($param['rodescripcion'])) $where.=" and rodescripcion ='".$param['rodescripcion']."'";
         }
 
         $objRol = new Rol;
