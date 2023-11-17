@@ -84,10 +84,15 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
                 echo '<button type="button" class="btn btn-primary" onclick=" return abrirModalProductos(`' . $stringProductosCompra . '`)"> Ver producto</button>';
                 echo "</td>";
                 echo "<td>" . $estadoTipo . "</td>";
+                echo "</tr>";
 
             }
 
-            
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
+
+
 
             //function abrirModalProductos(){
 
@@ -106,7 +111,6 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
             //    echo "</select>";
             //    echo "<input type='submit' value='guardar' class='mx-1 btn btn-primary'/>";
             ?>
-        </div>
 
         <script>
         function abrirModalProductos(string){
@@ -114,6 +118,26 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
         }
 
         </script>
+
+        <div class="editarCompras">
+            <h2 class="mb-4">Editar compras</h2>
+            <form method="get" action="../accion/accionEditarCompra.php">
+                <div class="mb-1">
+                    <label class="form-label" for="idCompra">Id de compra:</label>
+                    <br/>
+                    <input class="form-control" type="number" id="idCompra" name="idCompra" required/>
+                    <br/>
+                </div>
+                <label class="form-label" for="idCompraEstadoTipo">Estado:</label>
+                <select required name="idCompraEstadoTipo" id="idCompraEstadoTipo">
+                    <option value="1"> Iniciada </option>
+                    <option value="2"> Aceptada </option>
+                    <option value="3"> Enviada </option>
+                    <option value="4"> Cancelada </option>
+                </select>
+                <input type="submit" class="btn btn-primary" value="enviar"/>
+            </form>
+        </div>
         
     </body>
 </html>
