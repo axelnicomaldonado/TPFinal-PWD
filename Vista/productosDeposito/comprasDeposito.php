@@ -72,8 +72,8 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
                 $estadoTipo = '';
                 foreach($listadoCompraEstado as $compraEstado){ // cambiar por while (todos los foreach)
                     if($compraEstado->getObjCompra()->getIdCompra() == $compra->getIdCompra()){
-                        $ceFechaIni = $compraEstado->getCeFechaIni();
-                        $ceFechaFin = $compraEstado->getCeFechaFin();
+                        $ceFechaIni = $ceFechaIni . $compraEstado->getCeFechaIni() . "<br/>";
+                        $ceFechaFin = $ceFechaFin . $compraEstado->getCeFechaFin() . "<br/>";
                         $estadoTipo = $compraEstado->getObjCompraEstadoTipo()->getCetDescripcion();
                     }
                 }
