@@ -8,9 +8,9 @@ class AbmUsuarioRol{
      */
     private function cargarObjeto($param){
         $obj = null;      
-        if (array_key_exists('idUsuario',$param) && array_key_exists('idRol',$param)){
+        if (array_key_exists('idusuario',$param) && array_key_exists('idrol',$param)){
             $obj = new UsuarioRol();
-            $obj->setear($param['idUsuario'], $param['idRol']);
+            $obj->setear($param['idusuario'], $param['idrol']);
         }
         return $obj;
     }
@@ -21,9 +21,9 @@ class AbmUsuarioRol{
      */
     private function cargarObjetoConClave($param){
         $obj = null;
-        if( isset($param['idUsuario']) && isset($param['idRol'])){
+        if( isset($param['idusuario']) && isset($param['idrol'])){
             $obj = new UsuarioRol();
-            $obj -> setear($param['idUsuario'],$param['idRol']);
+            $obj -> setearConClave($param['idusuario'],$param['idrol']);
         }
         return $obj;
     }
@@ -34,7 +34,7 @@ class AbmUsuarioRol{
      */
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idUsuario']) && isset($param['idRol']))
+        if (isset($param['idusuario']) && isset($param['idrol']))
             $resp = true;
         return $resp;
     }
@@ -44,7 +44,7 @@ class AbmUsuarioRol{
      */
     public function alta($param){
         $resp = false;
-        $obj = $this->cargarObjeto($param);
+        $obj = $this->cargarObjetoConClave($param);
         if ($obj!=null && $obj->insertar()){
             $resp = true;
         }
@@ -74,7 +74,7 @@ class AbmUsuarioRol{
     public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $obj = $this->cargarObjeto($param);
+            $obj = $this->cargarObjetoConClave($param);
             if($obj!=null && $obj->modificar()){
                 $resp = true;
             }
@@ -89,8 +89,8 @@ class AbmUsuarioRol{
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if(isset($param['idUsuario'])) $where.=" and idUsuario = ".$param['idUsuario'];
-            if(isset($param['idRol'])) $where.=" and idRol = ".$param['idRol'];
+            if(isset($param['idusuario'])) $where.=" and idusuario = ".$param['idusuario'];
+            if(isset($param['idrol'])) $where.=" and idrol = ".$param['idrol'];
         }
 
         $obj = new UsuarioRol;
