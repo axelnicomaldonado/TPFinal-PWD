@@ -22,6 +22,7 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
     <head>
         <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
         <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
 
     <body>
@@ -43,7 +44,7 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
                 <tbody>
             <?php
 
-            $arregloProductosCompra = [];
+            $stringProductosCompra = '';
             foreach ($listadoCompra as $compra) {
                 $total = 0;
                 foreach($listadoCompraItem as $compraItem){
@@ -52,9 +53,8 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
                             if($compraItem->getObjProducto()->getIdProducto() == $producto->getIdProducto()){
                                 $total = $total + $producto->getProPrecio() * $compraItem->getCiCantidad();
 
-                                $indice = count($arregloProductosCompra);
-                                $arregloProductosCompra[$indice]['producto'] = $producto->getProNombre();
-                                $arregloProductosCompra[$indice]['cantidad'] = $compraItem->getCiCantidad();
+                                $stringProductosCompra = $stringProductosCompra . $producto->getProNombre() . 
+                                " x" . $compraItem->getCiCantidad() . "\n";
                             }
                         }
                     }
@@ -81,13 +81,13 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
                 echo $ceFechaIni . "</td>";
                 echo "<td>" . $ceFechaFin . "</td>";
                 echo "<td>";
-                echo "<button class='btn btn-primary' onclick='abrirModalProductos(" . $arregloProductosCompra . ")";
+                echo '<button type="button" class="btn btn-primary" onclick=" return abrirModalProductos(`' . $stringProductosCompra . '`)"> Ver producto</button>';
                 echo "</td>";
                 echo "<td>" . $estadoTipo . "</td>";
 
-
-
             }
+
+            
 
             //function abrirModalProductos(){
 
@@ -108,6 +108,12 @@ $listadoCompraEstadoTipo = $abmCompraEstadoTipo->buscar(null);
             ?>
         </div>
 
+        <script>
+        function abrirModalProductos(string){
+            Swal.fire(string);
+        }
 
+        </script>
+        
     </body>
 </html>
