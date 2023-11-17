@@ -35,7 +35,7 @@ if($resp) {
                 <div class="card shadow-sm cardProducto">
                     <?php 
                     $id = $objProducto->getIdProducto();
-                    $imagen = "../imagenes/productos/$id/principal.jpeg";
+                    $imagen = "../imagenes/productos/$id.png";
                     if(!file_exists($imagen)){
                         $imagen = "../imagenes/default.jpg";
                     } ?>
