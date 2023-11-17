@@ -5,10 +5,11 @@ $abmProducto = new AbmProducto;
 $datos = data_submitted();
 
 if ($_POST['idProducto']){
-    $dir = '../imagenes/productos/' . $_POST['idProducto'];
+    $dir = '../imagenes/productos/';
 
     if ($abmProducto->modificacion($datos)) {
-        copy($_FILES["foto"]["tmp_name"], $dir . "/" . $_FILES["foto"]["name"])
+        unlink($dir . $datos['idProducto'] . '.png');
+        copy($_FILES["foto"]["tmp_name"], $dir . $datos['idProducto'] . '.png');
         
 
         ?>

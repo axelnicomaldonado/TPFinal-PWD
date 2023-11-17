@@ -60,6 +60,7 @@ if($datos['idCompraEstadoTipo'] != 4){
 
 
 if($abmCompraEstado->modificacion($arregloAnterior)){
+    $respMod = false;
     if($abmCompraEstado->alta($arreglo)){
 
         if($datos['idCompraEstadoTipo'] == 3){
@@ -78,13 +79,14 @@ if($abmCompraEstado->modificacion($arregloAnterior)){
                                     $arregloProducto['proCantStock'] = 0;
                                 }
                                 $arregloProducto['proPrecio'] = $producto->getProPrecio();
+                                $respMod = $abmProducto->modificacion($arregloProducto);
                             }
                         }
                     }
                 }
             }
     
-            if($abmProducto->modificacion($arregloProducto)){
+            if($respMod){
     
                 ?>
                     <h2 style="text-align: center; color: green">Los datos fueron actualizados correctamente, el stock se modifico.</h2>
