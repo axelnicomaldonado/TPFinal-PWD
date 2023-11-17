@@ -101,6 +101,8 @@ $datos = data_submitted();
                     echo "<h4>No hay productos cargados</h4>";
                 }
 
+                include_once '../estructura/footer.php';
+
             ?>
         
     </div>
