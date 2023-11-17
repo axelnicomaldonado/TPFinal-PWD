@@ -101,8 +101,8 @@ class AbmCompraEstadoTipo{
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if(isset($param['idCompraEstadoTipo'])) $where.=" and idcompraestadoTipo = ".$param['idCompraEstadoTipo'];
-            if(isset($param['cetDescripcion'])) $where.=" and cetdescripcion =".$param['objCompra']['cetDescripcion'];
+            if(isset($param['idCompraEstadoTipo'])) $where .= " and idcompraestadoTipo = ".$param['idCompraEstadoTipo'];
+            if(isset($param['cetDescripcion'])) $where.=" and cetdescripcion ='".$param['cetDescripcion']."'";
             if(isset($param['cetDetalle'])) $where.=" and cetdetalle ='".$param['cetDetalle']."'";
         }
 
