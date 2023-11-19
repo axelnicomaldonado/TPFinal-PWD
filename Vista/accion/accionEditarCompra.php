@@ -1,6 +1,7 @@
 <?php
 
 include_once "../../configuracion.php";
+include_once '../estructura/estDeposito/headerDeposito.php';
 $abmCompraEstado = new AbmCompraEstado;
 $abmCompraItem = new AbmCompraItem;
 $abmProducto = new AbmProducto;
