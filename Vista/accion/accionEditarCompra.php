@@ -79,6 +79,7 @@ if($abmCompraEstado->modificacion($arregloAnterior)){
                                     $arregloProducto['proCantStock'] = 0;
                                 }
                                 $arregloProducto['proPrecio'] = $producto->getProPrecio();
+                                $arregloProducto['proDeshabilitado'] = $producto->getProDeshabilitado();
                                 $respMod = $abmProducto->modificacion($arregloProducto);
                             }
                         }

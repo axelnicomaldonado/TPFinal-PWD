@@ -5,6 +5,8 @@ class AbmProducto{
     //private $proNombre;
     //private $proDetalle;
     //private $proCantStock;
+    //private $proPrecio;
+    //private $proDeshabilitado
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
@@ -14,9 +16,11 @@ class AbmProducto{
     private function cargarObjeto($param){
         $obj = null;      
         if (array_key_exists('idProducto',$param) && array_key_exists('proNombre',$param) 
-        && array_key_exists('proDetalle',$param) && array_key_exists('proCantStock',$param) && array_key_exists('proPrecio', $param)){
+        && array_key_exists('proDetalle',$param) && array_key_exists('proCantStock',$param) 
+        && array_key_exists('proPrecio', $param) && array_key_exists('proDeshabilitado', $param)){
             $obj = new Producto();
-            $obj->setear($param['idProducto'], $param['proNombre'], $param['proDetalle'], $param['proCantStock'], $param['proPrecio']);
+            $obj->setear($param['idProducto'], $param['proNombre'], $param['proDetalle'], $param['proCantStock'], 
+            $param['proPrecio'], $param['proDeshabilitado']);
         }
         return $obj;
     }
@@ -104,6 +108,7 @@ public function buscar($param){
         if (isset($param['proNombre'])) $where .= " and pronombre = '" . $param['proNombre'] . "'";
         if (isset($param['proDetalle'])) $where .= " and prodetalle = '" . $param['proDetalle'] . "'";
         if (isset($param['proCantStock'])) $where .= " and procantStock = " . $param['proCantStock'];
+        if (isset($param['proDeshabilitado'])) $where .= " and prodeshabilitado = " . $param['proDeshabilitado'];
     }
 
     $objProducto = new Producto();

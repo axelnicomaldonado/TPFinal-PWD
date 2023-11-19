@@ -85,17 +85,17 @@ $datos = data_submitted();
 
                 if (count($productos) > 0) {
                     foreach ($productos as $producto) {
-
-                        echo "<div class='producto'>";
-                        echo "<p>" . $producto->getProNombre() . "</p>";
-                        echo "<img width='250' height='150' src='../imagenes/productos/" . $producto->getIdProducto() . ".png' />";
-                        echo '<br/>';
-                        echo "$" . $producto->getProPrecio();
-                        echo "<br/>";
-                        echo "<p>" . $producto->getProCantStock() . " unidades <br/>";
-                        echo "id: " . $producto->getIdProducto() . "</P>";
-                        echo "</div>";
-
+                        if($producto->getProDeshabilitado() == null || $producto->getProDeshabilitado() == '0000-00-00 00:00:00'){
+                            echo "<div class='producto'>";
+                            echo "<p>" . $producto->getProNombre() . "</p>";
+                            echo "<img width='250' height='150' src='../imagenes/productos/" . $producto->getIdProducto() . ".png' />";
+                            echo '<br/>';
+                            echo "$" . $producto->getProPrecio();
+                            echo "<br/>";
+                            echo "<p>" . $producto->getProCantStock() . " unidades <br/>";
+                            echo "id: " . $producto->getIdProducto() . "</P>";
+                            echo "</div>";
+                        }
                     }
                 } else{
                     echo "<h4>No hay productos cargados</h4>";

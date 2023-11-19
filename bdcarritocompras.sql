@@ -130,7 +130,8 @@ CREATE TABLE `producto` (
   `pronombre` varchar(24) NOT NULL,
   `prodetalle` varchar(512) NOT NULL,
   `procantstock` int(11) NOT NULL,
-  `proprecio` float(9) NOT NULL
+  `proprecio` float(9) NOT NULL,
+  `prodeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
