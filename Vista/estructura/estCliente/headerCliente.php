@@ -47,7 +47,7 @@ $obj = new Session();
           <img src="../imagenes/user.png" alt="user" class="imgUser">
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="../cliente/cuenta.php">Mi Cuenta</a></li>
+            <li><a class="dropdown-item" href="../cliente/cuentaCliente.php">Mi Cuenta</a></li>
             <li>
             <form action="../accion/accionLoginLogout.php" method="post">
         <li><a class="dropdown-item" href="#"><button class="btn btn-dark-outline" id="botonCerrar"  type="sumbit" name="accion" value="cerrar">Cerrar Sesion</button></a></li>
