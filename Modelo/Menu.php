@@ -203,6 +203,37 @@ class Menu {
         return $arreglo;
     }
 
+    public function buscar($id){
+        $base = new BaseDatos();
+        $encontro = false;
+        $consulta = "SELECT * FROM menu WHERE idmenu = '" . $id . "'";
+
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                if($fila = $base->Registro()){
+                    $objMenu = new Menu;
+                    $objMenuPadre = null;
+                    if($fila["idpadre"] != NULL){
+                        $objMenuPadre = new Menu;
+                        $objMenuPadre->buscar($fila["idpadre"]);
+                    }
+
+                    $this->setear(
+                        $fila["idmenu"],
+                        $fila["menombre"],
+                        $fila["medescripcion"],
+                        $objMenu,
+                        $fila["medeshabilitado"]
+                    );
+
+                    $encontro = true;
+                }
+            }else{$this->setMensajeOperacion("menu->buscar: ".$base->getError());}
+        }else{$this->setMensajeOperacion("menu->buscar: ".$base->getError());}
+
+        return $encontro;
+    }
+
     public function setear($idMenu, $meNombre, $meDescripcion, $ObjMenu, $meDeshabilitado){
         $this->setIdMenu($idMenu);
         $this->setMeNombre($meNombre);

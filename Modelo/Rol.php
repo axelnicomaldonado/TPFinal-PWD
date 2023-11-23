@@ -104,6 +104,27 @@ class Rol {
         return $resp;
     }
 
+    public function buscar($id){
+        $base = new BaseDatos;
+        $encontro = false;
+        $consulta = "SELECT * FROM rol WHERE idrol = '" . $id . "'";
+
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                if($fila = $base->Registro()){
+                    $this->setear(
+                        $id,
+                        $fila["rodescripcion"]
+                    );
+
+                    $encontro = true;
+                }
+            }else{$this->setMensajeOperacion("rol->buscar: ".$base->getError());}
+        }else{$this->setMensajeOperacion("rol->buscar: ".$base->getError());}
+
+        return $encontro;
+    }
+
     public static function listar($parametro=""){
         $arreglo = array();
         $base=new BaseDatos();

@@ -148,6 +148,61 @@ class UsuarioRol {
         }
         return $arreglo;
     }
+
+    public function buscar($idRol, $idUsuario){
+        $encontro = false;
+        $base = new BaseDatos;
+
+        $consulta = "SELECT * FROM usuariorol WHERE idusuario = '" . $idUsuario . "' AND
+        idrol = '" . $idRol . "'";
+
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                if($fila = $base->Registro()){
+                    // Rol
+                    $objRol = new Rol();
+                    $objRol->buscar($fila["idrol"]);
+
+                    // Usuario
+                    $objUsuario = new Usuario();
+                    $objUsuario->buscar($fila["idusuario"]);
+                    
+                    $this->setear(
+                        $objRol,
+                        $objUsuario
+                    );
+
+                    $encontro = true;
+                }
+            }else{$this->setMensajeOperacion("usuariorol->buscar: ".$base->getError());}
+        }else{$this->setMensajeOperacion("usuariorol->buscar: ".$base->getError());}
+
+        return $encontro;
+    }
+
+    public function listarRoles($condicion = ""){
+        $arreglo = null;
+        $base = new BaseDatos;
+        $consulta = "SELECT * FROM usuariorol";
+
+        if($condicion != ""){
+            $consulta .= " WHERE " . $condicion;
+        }
+
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                $arreglo = [];
+                while($fila = $base->Registro()){
+                    $objUsuarioRol = new UsuarioRol();
+                    $objUsuarioRol->buscar($fila["idrol"], $fila["idusuario"]);
+
+                    array_push($arreglo, $objUsuarioRol);
+                }
+            }else{$this->setMensajeOperacion("usuariorol->listar: ".$base->getError());}
+        }else{$this->setMensajeOperacion("usuariorol->listar: ".$base->getError());}
+
+        return $arreglo;
+    }
     
 }
 
