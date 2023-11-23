@@ -200,3 +200,75 @@ td {
     background-color: inherit;
     color: white;
 }
+
+.containerCliente {
+    width: 90%;
+    margin-top: 3em;
+    border: 2px solid grey;
+    margin: auto;
+    margin-bottom: 3em;
+}
+
+.infCuenta {
+    text-align: center;
+    margin-top: 1em;
+    font-size: 2em;
+}
+.datosCuenta {
+
+    padding-top: 2em;
+    flex: 4;
+    border-right: 1px solid black;
+}
+.textoInfo {
+    font-size: 1.4em;
+    display: inline-block;
+    padding-right: 2em;
+    width: 80%;
+}
+
+.editar {
+    color: green;
+    font-size: 1.5em;
+    align-items: center;
+}
+.datosSeparados {
+    border-top: 1px solid grey;
+}
+.datosSeparados:hover{
+    background-color: #bababa;
+    transition: .5s;
+}
+.componenteDato {
+    width: 100%;
+    text-align: left;
+    padding-left: 2em;
+}
+.imgEditar{
+    height: 2.2em;
+}
+.subtituloDatos {
+    text-align: center;
+    font-size: 1.7em;
+    padding-bottom: 1em;
+}
+.datosCompra {
+    padding-top: 2em;
+    flex: 6;
+}
+
+.estadoModal {
+    padding-left: 2em;
+    font-size: 1.2em;
+}
+.contenedorCierre {
+    margin-top: 2em;
+    margin-left: 5em;
+}
+
+.containerFormEditar {
+    margin: 2em auto;
+    width: 70%;
+    border: 1px solid grey;
+    padding: 1em;
+}

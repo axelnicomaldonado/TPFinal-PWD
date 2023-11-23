@@ -2,20 +2,7 @@
 include_once("../../configuracion.php");
 $datos = data_submitted();
 $obj = new Session();
-$resp = $obj->validar();
-$listRol = $obj->getRol();
-if($resp) {
-    if($listRol[0]->getobjrol()->getIdRol() == 2){
-        include_once("../estructura/estAdmin/headerAdmin.php");
-    }
-    else{
-        $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
-        echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
-    }
-} else {
-    $mensaje ="Error, vuelva a intentarlo";
-    echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
-}
+include_once("../estructura/headerSeguro.php");
 ?>
 
 <form action="./accion/accionAñadir.php" method="post">

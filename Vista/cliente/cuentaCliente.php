@@ -1,7 +1,6 @@
 <?php
 $titulo = "Mi Cuenta";
-include_once("../../configuracion.php");
-include_once("../estructura/estCliente/headerCliente.php");
+include_once("../estructura/headerSeguro.php");
 $objUsuario = new AbmUsuario();
 $session = new Session();
 

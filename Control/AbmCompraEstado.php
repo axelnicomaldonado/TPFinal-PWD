@@ -18,14 +18,11 @@ class AbmCompraEstado{
             $arrayCompra = [];
             $arrayCompraEstadoTipo = [];
             $arrayCompra ['idCompra'] = $param['idCompra'];
-            $arrayCompraEstadoTipo ['idCompraEstadoTipo'] = $param['idCompraEstadoTipo']; // Modificado!!!
-            // MODIFICADO!!!
+            $arrayCompraEstadoTipo ['idCompraEstadoTipo'] = $param['idCompraEstadoTipo']; // Modificado
             $listaCompras = $abmCompra -> buscar ($arrayCompra);
             $listaCompraEstadoTipo = $abmCompraEstadoTipo -> buscar ($arrayCompraEstadoTipo);
-            print_r($listaCompraEstadoTipo);
             $objCompra = $listaCompras[0];
             $objCompraEstadoTipo = $listaCompraEstadoTipo[0];
-            // MODIFICADO!!!
             $idCompraEstado = $param ['idCompraEstado'];
             $ceFechaIni = $param ['ceFechaIni'];
             $ceFechaFin = $param ['ceFechaFin'];

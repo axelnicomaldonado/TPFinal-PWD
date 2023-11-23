@@ -24,9 +24,6 @@ if(!$session->validar() || !$session->permiso()){
     <!--CSS-->
     <link rel="stylesheet" href="../css/estilos.css">
 
-    <!--<script src="../lib/md5.min.js"></script>!
-    <script src="../lib/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
-    <script src="../lib/jquery.validate.min.js"></script> CONSIDERAR INCLUIR JQUERY-->
 
     <title><?php echo $titulo ?></title>
 </head>

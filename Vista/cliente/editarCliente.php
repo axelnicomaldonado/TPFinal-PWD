@@ -1,7 +1,6 @@
 <?php
 $titulo = "Editar Cliente";
-include_once("../../configuracion.php");
-include_once("../estructura/estCliente/headerCliente.php");
+include_once("../estructura/headerSeguro.php");
 $session = new Session();
 
 $id = $session->getUsuario()->getidusuario();

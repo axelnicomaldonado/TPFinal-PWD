@@ -25,9 +25,6 @@ if($resp) {
 
 ?>
 
-
-
-
 <div class="container" style="padding-top: 4em;">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <?php foreach($productos as $objProducto) { ?>
@@ -60,6 +57,23 @@ if($resp) {
                 </div>
             </div>
         <?php } ?>
+    </div>
+</div>
+
+<div id="stockInsuficienteModal" class="modal fade" tabindex="-1" aria-labelledby="stockInsuficienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="stockInsuficienteModalLabel">Stock Insuficiente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                El stock disponible es insuficiente para agregar más unidades.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
     </div>
 </div>
 
