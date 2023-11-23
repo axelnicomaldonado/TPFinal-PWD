@@ -86,6 +86,26 @@ class Session{
         return $list_rol;
 
     }
+
+    /**
+     * Verifica si el cliente tiene permiso para acceder al sitio.
+     */
+    public function permiso(){
+        $permiso = false;
+
+        $ruta = $_SERVER['PHP_SELF'];
+        $ruta = explode("/" ,$ruta);
+        $cadenaRuta = "../";
+        $cadenaRuta .= $ruta[count($ruta)-2] . "/";
+        $cadenaRuta .= $ruta[count($ruta)-1];
+
+        $objMenuRol = new MenuRol();
+        if($objMenuRol->verificarPermiso($_SESSION["idusuario"],$cadenaRuta)){
+            $permiso = true;
+        }
+
+        return $permiso;
+    }
     
     /**
      *Cierra la sesión actual.
