@@ -16,7 +16,8 @@ $datos = data_submitted();
     <head>
     <link href="../css/deposito.css" rel="stylesheet">
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.bundle.min.js">
+  </script>
     </head>
 
 <body>
@@ -86,7 +87,9 @@ $datos = data_submitted();
                 if (count($productos) > 0) {
                     foreach ($productos as $producto) {
                         if($producto->getProDeshabilitado() == null || $producto->getProDeshabilitado() == '0000-00-00 00:00:00'){
-                            echo "<div class='producto'>";
+                            echo "<div onclick='rellenar(" . $producto->getIdProducto() . ", `" . $producto->getProNombre() . "`, `" . 
+                            $producto->getProDetalle() . "`, " . $producto->getProCantStock() . ", " . $producto->getProPrecio() . 
+                            ")' class='producto'>";
                             echo "<p>" . $producto->getProNombre() . "</p>";
                             echo "<img width='250' height='150' src='../imagenes/productos/" . $producto->getIdProducto() . ".png' />";
                             echo '<br/>';
@@ -109,7 +112,21 @@ $datos = data_submitted();
 
 <script>
 
-    //
+    function rellenar(id, nombre, detalle, stock, precio){
+
+        idProducto = document.getElementById('idProducto')
+        proNombre = document.getElementById('proNombre')
+        proDetalle = document.getElementById('proDetalle')
+        proCantStock = document.getElementById('proCantStock')
+        proPrecio = document.getElementById('proPrecio')
+        foto = document.getElementById('foto')
+
+        idProducto.value = id
+        proNombre.value = nombre
+        proDetalle.value = detalle
+        proCantStock.value = stock
+        proPrecio.value = precio
+    }
     
 </script>
 
