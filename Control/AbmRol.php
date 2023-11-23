@@ -97,4 +97,26 @@ class AbmRol{
         return $arreglo;
     }
 
+    /**
+     * Retorna todos sus obj menu a los que puede acceder
+     */
+    public function buscarPermisos($param){
+        $where = " true ";
+        $claves = ["id"];
+        $clavesDB = ["idrol"];
+
+
+        if ($param<>null){
+            for($i = 0; $i < count($claves); $i++){
+                if(isset($param[$claves[$i]])){
+                    $where.= " and " . $clavesDB[$i] . " = '". $param[$claves[$i]]  ."'";
+                }
+            }
+        }
+
+        $obj = new MenuRol();
+        $arreglo = $obj->listarRoles($where);
+        return $arreglo;
+    }
+
 }
