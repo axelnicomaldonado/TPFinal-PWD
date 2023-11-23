@@ -170,6 +170,27 @@ class AbmUsuario{
         //echo "Van ".count($arreglo);
         return $arreglo;
     }
+
+    /**
+     * Esta función busca los roles de un usuario con su ID
+     */
+    public function buscarRoles($param){
+        $where = " true ";
+        $claves = ["id"];
+        $clavesDB = ["idusuario"];
+
+
+        if ($param<>null){
+            for($i = 0; $i < count($claves); $i++){
+                if(isset($param[$claves[$i]])){
+                    $where.= " and " . $clavesDB[$i] . " = '". $param[$claves[$i]]  ."'";
+                }
+            }
+        }
+        $obj = new UsuarioRol();
+        $arreglo = $obj->listar($where);
+        return $arreglo;
+    }
     
 }
 ?>
