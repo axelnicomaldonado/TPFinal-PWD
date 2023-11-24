@@ -100,11 +100,44 @@ if($abmCompraEstado->modificacion($arregloAnterior)){
                     <h2 style="text-align: center; color: yellow">el Compra estado se modifico pero el stock no se modifico.</h2>
                 <?php
             }
-        } else {
-            ?>
-                    <h2 style="text-align: center; color: green">Los datos fueron actualizados correctamente.</h2>
-                <?php
-        }
+            } elseif($datos['idCompraEstadoTipo'] == 4 && $idCompraEstadoTipoAnterior == 3){
+
+                $arregloProducto = [];
+                if($listaCompraItem){
+                    foreach($listaCompraItem as $compraItem){
+                        if($datos['idCompra'] == $compraItem->getObjCompra()->getIdCompra()){
+                            foreach($listaProducto as $producto){
+                                if($producto->getIdProducto() == $compraItem->getObjProducto()->getIdProducto()){
+                                    $arregloProducto['idProducto'] = $producto->getIdProducto();
+                                    $arregloProducto['proNombre'] = $producto->getProNombre();
+                                    $arregloProducto['proDetalle'] = $producto->getProDetalle();
+                                    $arregloProducto['proCantStock'] = $producto->getProCantStock() + $compraItem->getCiCantidad();
+                                    $arregloProducto['proPrecio'] = $producto->getProPrecio();
+                                    $arregloProducto['proDeshabilitado'] = $producto->getProDeshabilitado();
+                                    $respMod = $abmProducto->modificacion($arregloProducto);
+                                }
+                            }
+                        }
+                    }
+                }
+                if($respMod){
+    
+                    ?>
+                        <h2 style="text-align: center; color: green">Los datos fueron actualizados correctamente, el stock se modifico.</h2>
+                    <?php
+            
+                } else {
+            
+                ?>
+                        <h2 style="text-align: center; color: yellow">el Compra estado se modifico pero el stock no se modifico.</h2>
+                    <?php
+                }
+
+            } else {
+                ?>
+                        <h2 style="text-align: center; color: green">Los datos fueron actualizados correctamente.</h2>
+                    <?php
+            }
         
     } else {
         ?>
