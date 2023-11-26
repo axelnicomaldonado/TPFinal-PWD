@@ -163,10 +163,10 @@ CREATE TABLE `rol` (
 -- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `rol`(`idrol`, `rodescripcion`) VALUES
-(1, `cliente`),
-(2, `admin`),
-(3, `deposito`);
+INSERT INTO `rol` (`idrol`, `rodescripcion`) VALUES
+(1, 'cliente'),
+(2, 'admin'),
+(3, 'deposito');
 -- --------------------------------------------------------
 
 --
