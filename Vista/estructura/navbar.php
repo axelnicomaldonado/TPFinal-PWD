@@ -24,6 +24,12 @@ foreach ($arregloRoles as $rol) {
         }
     }
 }
+
+$botonComprar = '<div class="row">
+        <div class="col-md-5 offset-md-7 d-grid gap-2">
+            <a href="../home/index.php" class="btn btn-outline-success btn-lg" id="comprarBtn" data-bs-toggle="modal" data-bs-target="#successModal">Comprar</a>
+        </div>
+    </div>';
 ?>
 
 

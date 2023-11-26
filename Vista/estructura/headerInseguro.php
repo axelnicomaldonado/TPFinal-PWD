@@ -7,6 +7,12 @@ $navbar = false;
 if($session->validar()){
     $login = true;
 }
+
+$botonComprar = '<div class="row">
+    <div class="col-md-5 offset-md-7 d-grid gap-2">
+        <a href="../login/login.php" class="btn btn-outline-success btn-lg" >Comprar</a>
+    </div>
+</div>';
 ?>
 
 <!DOCTYPE html>
