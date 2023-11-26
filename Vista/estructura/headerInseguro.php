@@ -3,11 +3,33 @@
 include_once "../../configuracion.php";
 $session = new Session();
 $login = false;
-$seguro = false;
+$navbar = false;
 if($session->validar()){
     $login = true;
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Librerias-->
+    <link rel="stylesheet" type="text/css" href="../../util/librerias/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="../../util/librerias/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../util/librerias/fontawesome/css/all.min.css">
+    <script type="text/javascript" src="../../util/librerias/fontawesome/js/all.min.js"></script>
+    
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+
+    <script src="../js/scripts.js"></script>
+    
+
+
+    <title><?php echo $titulo ?></title>
+</head>
 
 <body>
 
@@ -22,7 +44,6 @@ if($session->validar()){
     <nav class="menu">
       <ul class="nav">
         <li><a href="../home/index.php">Inicio</a> </li>
-        <li><a href="../productos/productos.php">Productos</a> </li>
         <li><a href="sobreMi.php">Sobre mi</a> </li>
         <li><a href="preguntasFrecuentes.php">Preguntas frecuentes</a> </li>
         <li><a href="contacto.php">Contacto</a> </li>
@@ -30,10 +51,13 @@ if($session->validar()){
         <img   src="../imagenes/carrito.png" alt="" class="imgCart">
         <span id="contadorCarrito"><?php echo isset($_SESSION['numero']) ? $_SESSION['numero'] : 0; ?></span>
         </a>
-
-        <a href="../login/login.php">
-          <img src="../imagenes/user.png" alt="user" class="imgUser">
-          </a>
+        <li>
+      <?php
+          echo (!$login) ? '<a href="../login/login.php">Iniciar sesión</a>' :
+          '<form action="../accion/accionLoginLogout.php" method="post">
+          <button class="btn btn-dark-outline" id="botonCerrar"  type="sumbit" name="accion" value="cerrar">Cerrar Sesion</button>
+          </form>' 
+        ?> </li>
 
       </ul>
     </nav>

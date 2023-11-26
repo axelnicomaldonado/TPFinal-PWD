@@ -6,7 +6,6 @@ $seguro = true;
 if(!$session->validar() || !$session->permiso()){
     header("Location:../home/index.php");
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,7 +26,6 @@ if(!$session->validar() || !$session->permiso()){
 
     <title><?php echo $titulo ?></title>
 </head>
-<body class="d-flex flex-column min-vh-100">
 <?php
 // Navbar
 include_once "navbar.php";
