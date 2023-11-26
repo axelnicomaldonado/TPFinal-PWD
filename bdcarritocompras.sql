@@ -102,11 +102,13 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`idmenu`, `menombre`, `medescripcion`, `idpadre`, `medeshabilitado`) VALUES
-(7, 'nuevo', 'kkkkk', NULL, NULL),
-(8, 'nuevo', 'kkkkk', NULL, NULL),
-(9, 'nuevo', 'kkkkk', 7, NULL),
-(10, 'nuevo', 'kkkkk', NULL, NULL),
-(11, 'nuevo', 'kkkkk', NULL, NULL);
+(1, 'Mi cuenta', '../cliente/cuentaCliente.php', NULL, NULL),
+(2, 'Carrito', '../cliente/carrito.php', NULL, NULL),
+(3, 'Gestion de usuarios', '../admin/gestionUsuarios.php', NULL, NULL),
+(4, 'Añadir usuarios', '../admin/añadirUsuarios.php', NULL, NULL),
+(5, 'home', '../home/index.php', NULL, NULL),
+(6, 'Depósito de productos', '../productosDeposito/productosDeposito.php', NULL, NULL),
+(7, 'Lista de compras', '../productosDeposito/comprasDeposito.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -118,6 +120,18 @@ CREATE TABLE `menurol` (
   `idmenu` bigint(20) NOT NULL,
   `idrol` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Volcado de datos para la tabla `menu`
+--
+
+INSERT INTO `menurol` (`idmenu`, `idrol`) VALUES
+(1,1),
+(3,2),
+(4,2),
+(6,3),
+(7,3);
 
 -- --------------------------------------------------------
 
