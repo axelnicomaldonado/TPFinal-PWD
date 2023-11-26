@@ -213,7 +213,7 @@ CREATE TABLE `usuariorol` (
 INSERT INTO `usuariorol` (`idusuario`, `idrol`) VALUES
 (1, 2),
 (2, 1),
-(3, 2),
+(3, 3),
 (4, 1);
 
 
