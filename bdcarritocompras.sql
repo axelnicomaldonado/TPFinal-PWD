@@ -123,7 +123,7 @@ CREATE TABLE `menurol` (
 
 
 --
--- Volcado de datos para la tabla `menu`
+-- Volcado de datos para la tabla `menurol`
 --
 
 INSERT INTO `menurol` (`idmenu`, `idrol`) VALUES
@@ -159,6 +159,14 @@ CREATE TABLE `rol` (
   `rodescripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol`(`idrol`, `rodescripcion`) VALUES
+(1, `cliente`),
+(2, `admin`),
+(3, `deposito`);
 -- --------------------------------------------------------
 
 --
@@ -168,10 +176,23 @@ CREATE TABLE `rol` (
 CREATE TABLE `usuario` (
   `idusuario` bigint(20) NOT NULL,
   `usnombre` varchar(50) NOT NULL,
-  `uspass` int(11) NOT NULL,
+  `uspass` varchar(150) NOT NULL,
   `usmail` varchar(50) NOT NULL,
   `usdeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+
+INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
+(1, 'admin', '123', 'admin@gmail.com', NULL),
+(2, 'cliente', '123', 'cliente@gmail.com', NULL),
+(3, 'deposito', '123', 'depo@hotmail.com', NULL),
+(4, 'pepe', 'asd123', 'pepe@outlook.com', NULL);
+
+
 
 -- --------------------------------------------------------
 
@@ -183,6 +204,19 @@ CREATE TABLE `usuariorol` (
   `idusuario` bigint(20) NOT NULL,
   `idrol` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Volcado de datos para la tabla `usuariorol`
+--
+
+INSERT INTO `usuariorol` (`idusuario`, `idrol`) VALUES
+(1, 2),
+(2, 1),
+(3, 2),
+(4, 1);
+
+
 
 --
 -- Índices para tablas volcadas
