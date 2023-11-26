@@ -1,34 +1,12 @@
 <?php
 include_once('../../configuracion.php');
-
-
+include_once("../estructura/headerInseguro.php");
 
 $obj = new Session();
-$objUserRol = new AbmUsuarioRol();
 $resp = $obj->validar();
-$listRol = $obj->getRol();
-if($resp) {
-    if($listRol[0]->getobjrol()->getIdRol() == 1){
-        $botonComprar = '<div class="row">
-        <div class="col-md-5 offset-md-7 d-grid gap-2">
-            <a href="../home/index.php" class="btn btn-outline-success btn-lg" id="comprarBtn" data-bs-toggle="modal" data-bs-target="#successModal">Comprar</a>
-        </div>
-    </div>';
-        include_once("../estructura/estCliente/headerCliente.php");
-    }
-    else{
-        $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
-        echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
-    }
-} else {
-    $botonComprar = '<div class="row">
-    <div class="col-md-5 offset-md-7 d-grid gap-2">
-        <a href="../login/login.php" class="btn btn-outline-success btn-lg" >Comprar</a>
-    </div>
-</div>';
-    include_once("../estructura/estPublico/headerPublico.php");
+if ($resp){
+    include_once("../estructura/navbar.php");
 }
-
 
 $productosCarrito = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
 
