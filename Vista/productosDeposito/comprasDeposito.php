@@ -1,8 +1,7 @@
 <?php
-
-include_once '../../util/funciones.php';
+$titulo = "Lista de compras";
 include_once '../../configuracion.php';
-include_once '../estructura/estDeposito/headerDeposito.php';
+include_once '../estructura/headerSeguro.php';  
 
 $abmProducto = new AbmProducto;
 $abmCompra = new AbmCompra;

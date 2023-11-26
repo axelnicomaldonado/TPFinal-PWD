@@ -1,21 +1,10 @@
 <?php
+$titulo = "Gestión de usuarios";
 include_once("../../configuracion.php");
+include_once('../estructura/headerSeguro.php');
 $datos = data_submitted();
 $obj = new Session();
-$resp = $obj->validar();
-$listRol = $obj->getRol();
-if($resp) {
-    if($listRol[0]->getobjrol()->getIdRol() == 2){
-        include_once("../estructura/estAdmin/headerAdmin.php");
-    }
-    else{
-        $mensaje ="Error, acceso solo Admin. Inicie sesion como admin para continuar";
-        echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
-    }
-} else {
-    $mensaje ="Error, vuelva a intentarlo";
-    echo("<script>location.href = '../login/login.php?msg=".$mensaje."';</script>");
-}
+
 $objUserRol = new AbmUsuarioRol();
 $users = $objUserRol->buscar(null);
 if(count($users) > 0) {

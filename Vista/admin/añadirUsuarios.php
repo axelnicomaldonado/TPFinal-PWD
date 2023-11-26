@@ -1,4 +1,5 @@
 <?php
+$titulo = "Añadir usuario";
 include_once("../../configuracion.php");
 $datos = data_submitted();
 $obj = new Session();

@@ -1,7 +1,7 @@
 <?php
 
 include_once "../../configuracion.php";
-include_once '../estructura/estDeposito/headerDeposito.php';
+include_once '../estructura/headerSeguro.php';
 $abmProducto = new AbmProducto;
 $datos = data_submitted();
 $dir = '../imagenes/productos/';

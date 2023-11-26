@@ -1,6 +1,7 @@
 <?php
+$titulo = "Inicio de sesion";
 include_once("../../configuracion.php");
-include_once("../estructura/estPublico/headerPublico.php");
+include_once("../estructura/headerInseguro.php");
 $datos = data_submitted();
 ?>
 <!DOCTYPE html>
