@@ -4,7 +4,7 @@ include_once("../estructura/headerInseguro.php");
 $datos = data_submitted();
 ?>
 <div class="border p-3">
-    <form action="accionRegister.php" method="post">
+    <form id="form" action="accionRegister.php" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Nombre de Usuario:</label>
             <input type="text" class="form-control" id="usnombre" name="usnombre" required>
@@ -25,6 +25,20 @@ $datos = data_submitted();
         echo '<div class="alert alert-danger text-center mt-3">' . $datos['msg'] . '</div>';
     }
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var password = document.getElementById('uspass').value;
+
+            var hashedPassword = md5(password);
+
+            document.getElementById('uspass').value = hashedPassword;
+            
+            this.submit();
+        });
+    </script>
 </div>
 
 
