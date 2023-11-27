@@ -10,7 +10,7 @@ class Usuario{
         public function __construct(){
             $this->idusuario="";
             $this->usnombre="";
-            $this->uspass=0;
+            $this->uspass="";
             $this->usmail="";
             $this->usdeshabilitado="";
             $this->mensajeoperacion ="";
@@ -79,7 +79,7 @@ class Usuario{
         $resp = false;
         $base = new BaseDatos();
         $sql = "INSERT INTO usuario(usnombre,uspass,usmail)
-            VALUES('".$this->getusnombre()."',".$this->getuspass().",'".$this->getusmail()."');";
+            VALUES('".$this->getusnombre()."','".$this->getuspass()."','".$this->getusmail()."');";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -97,8 +97,8 @@ class Usuario{
         $base = new BaseDatos(); //*PARCHE* en la consulta, estaban intercambiados el nombre y el apellido, no se de donde viene la confusion
         // Añade el campo usdeshabilitado a la consulta solo si es diferente de null
         $usdeshabilitado = $this->getusdeshabilitado() ? "'" . $this->getusdeshabilitado() . "'" : 'NULL';
-        $sql = "UPDATE usuario SET usnombre='" . $this->getusnombre() . "', uspass=" . $this->getuspass() .
-        ", usmail='" . $this->getusmail() . "', usdeshabilitado=" . $usdeshabilitado . " WHERE idusuario=" . $this->getidusuario();
+        $sql = "UPDATE usuario SET usnombre='" . $this->getusnombre() . "', uspass='" . $this->getuspass() .
+        "', usmail='" . $this->getusmail() . "', usdeshabilitado=" . $usdeshabilitado . " WHERE idusuario=" . $this->getidusuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -151,33 +151,7 @@ class Usuario{
  
         return $arreglo;
     }
-
-    public function buscar($id){
-        $base = new BaseDatos();
-        $encontro = false;
-        $consulta = "SELECT * FROM usuario WHERE idusuario = '" . $id . "'";
-
-        if($base->Iniciar()){
-            if($base->Ejecutar($consulta)){
-                if($fila = $base->Registro()){
-                    $this->setear(
-                        $id,
-                        $fila["usnombre"],
-                        $fila["uspass"],
-                        $fila["usmail"],
-                        $fila["usdeshabilitado"]
-                    );
-
-                    $encontro = true;
-                }
-            }else {
-                $this->setMensajeOperacion("usuario->buscar: ".$base->getError());}
-        }else {
-            $this->setMensajeOperacion("usuario->buscar: ".$base->getError());}
-
-        return $encontro;
-    }
-
+    
         public function setear($idusuario, $usnombre,$uspass, $usmail, $usdeshabilitado)
         {
             $this->setidusuario($idusuario);
