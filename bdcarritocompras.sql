@@ -106,9 +106,11 @@ INSERT INTO `menu` (`idmenu`, `menombre`, `medescripcion`, `idpadre`, `medeshabi
 (2, 'Carrito', '../cliente/carrito.php', NULL, NULL),
 (3, 'Gestion de usuarios', '../admin/gestionUsuarios.php', NULL, NULL),
 (4, 'Añadir usuarios', '../admin/añadirUsuarios.php', NULL, NULL),
-(5, 'home', '../home/index.php', NULL, NULL),
-(6, 'Depósito de productos', '../productosDeposito/productosDeposito.php', NULL, NULL),
-(7, 'Lista de compras', '../productosDeposito/comprasDeposito.php', NULL, NULL);
+(5, 'Editar usuarios', '../admin/editarUsuarios.php', NULL, NULL),
+(6, 'home', '../home/index.php', NULL, NULL),
+(7, 'Depósito de productos', '../productosDeposito/productosDeposito.php', NULL, NULL),
+(8, 'Lista de compras', '../productosDeposito/comprasDeposito.php', NULL, NULL),
+(9, 'Editar Cuenta', '../cliente/editarCliente.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -128,10 +130,12 @@ CREATE TABLE `menurol` (
 
 INSERT INTO `menurol` (`idmenu`, `idrol`) VALUES
 (1,1),
+(9,1),
 (3,2),
 (4,2),
-(6,3),
-(7,3);
+(5,2),
+(7,3),
+(8,3);
 
 -- --------------------------------------------------------
 
