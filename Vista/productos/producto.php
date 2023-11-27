@@ -3,10 +3,17 @@
 $titulo = 'Detalle del producto';
 include_once("../../configuracion.php");
 
-$obj = new Session();
-$objUserRol = new AbmUsuarioRol();
-$resp = $obj->validar();
-include_once("../estructura/headerInseguro.php");
+$producto = new AbmProducto;
+$productos = $producto->buscar(null);
+$href = '../productos/producto.php';
+$session = new Session();
+$resp = $session->validar();
+if ($resp) {
+    include_once '../estructura/navbar.php';
+
+} else {
+    include_once("../estructura/headerInseguro.php");
+}
 
 
 
@@ -35,11 +42,10 @@ if ($id == '' || $token == '') {
             $precio = $datosProducto[0]->getProPrecio();
             $detalle = $datosProducto[0]->getProDetalle();
             $stock = $datosProducto[0]->getProCantStock();
-            $dirImages = '../imagenes/productos/' . $idProducto . '/';
-            $imgPrincipal = $dirImages . 'principal.jpeg';
+            $imagen = "../imagenes/productos/$idProducto.png";
 
-            if (!file_exists($imgPrincipal)) {
-                $imgPrincipal = '../imagenes/default.jpg';
+            if (!file_exists($imagen)) {
+                $imagen = '../imagenes/default.jpg';
             }
         }
     } else {
@@ -55,7 +61,7 @@ if ($id == '' || $token == '') {
     <div class="containerDetalle">
         <div class="row">
             <div class="col-md-6 order-md-1">
-                <img class="imgDetalle" src="<?php echo $imgPrincipal ?>">
+                <img class="imgDetalle" src="<?php echo $imagen ?>">
             </div>
 
             <div class="col-md-6 order-md-2">

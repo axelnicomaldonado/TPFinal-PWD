@@ -272,3 +272,7 @@ td {
     border: 1px solid grey;
     padding: 1em;
 }
+
+.liNav:hover {
+    color: white;
+}

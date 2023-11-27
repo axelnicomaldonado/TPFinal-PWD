@@ -4,7 +4,15 @@ $titulo = 'Productos';
 $producto = new AbmProducto;
 $productos = $producto->buscar(null);
 $href = '../productos/producto.php';
-include_once("../estructura/headerInseguro.php");
+$session = new Session();
+$resp = $session->validar();
+if ($resp) {
+    include_once '../estructura/navbar.php';
+
+} else {
+    include_once("../estructura/headerInseguro.php");
+}
+
 
 
 

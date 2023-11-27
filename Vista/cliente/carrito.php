@@ -1,11 +1,14 @@
 <?php
 include_once('../../configuracion.php');
-include_once("../estructura/headerInseguro.php");
 
-$obj = new Session();
-$resp = $obj->validar();
+
+$session = new Session();
+$resp = $session->validar();
 if ($resp){
     include_once("../estructura/navbar.php");
+
+} else {
+    include_once("../estructura/headerInseguro.php");
 }
 
 $productosCarrito = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
