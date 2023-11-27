@@ -1,6 +1,6 @@
 <?php
 include_once("../../configuracion.php");
-include_once("../estructura/estPublico/headerPublico.php");
+include_once("../estructura/headerInseguro.php");
 $datos = data_submitted();
 ?>
 <div class="border p-3">
