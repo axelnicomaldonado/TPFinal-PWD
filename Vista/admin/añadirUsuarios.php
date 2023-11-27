@@ -39,7 +39,3 @@ if (isset($datos) && isset($datos['msg']) && $datos['msg'] != null){
     echo '<div class="alert alert-danger text-center mt-3">' . $datos['msg'] . '</div>';
 }
 ?>
-
-<?php 
-include_once '../estructura/footer.php';
-?>

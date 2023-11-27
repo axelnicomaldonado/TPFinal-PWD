@@ -53,7 +53,3 @@ if (isset($datos) && isset($datos['msg']) && $datos['msg'] != null) {
     }
 }        
 ?>
-
-<?php 
-include_once '../estructura/footer.php';
-?>
