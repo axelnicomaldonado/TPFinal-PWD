@@ -14,7 +14,7 @@ private function cargarObjeto($param){
     || array_key_exists('usemail',$param)){
         var_dump($param);
         $obj = new Usuario();
-        $obj->setear($param['idusuario'],$param['usnombre'],$param['uspass'],$param['usmail'],null);
+        $obj->setear($param['idusuario'],$param['usnombre'],$param['uspass'],$param['usemail'],null);
     }
     return $obj;
 }

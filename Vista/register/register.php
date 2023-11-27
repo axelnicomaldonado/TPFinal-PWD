@@ -15,7 +15,7 @@ $datos = data_submitted();
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Correo Electrónico:</label>
-            <input type="email" class="form-control" id="usmail" name="usmail" required>
+            <input type="email" class="form-control" id="usemail" name="usemail" required>
         </div>
         <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>
