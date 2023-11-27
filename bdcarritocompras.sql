@@ -199,10 +199,9 @@ CREATE TABLE `usuario` (
 
 
 INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
-(1, 'admin', '123', 'admin@gmail.com', NULL),
-(2, 'cliente', '123', 'cliente@gmail.com', NULL),
-(3, 'deposito', '123', 'depo@hotmail.com', NULL),
-(4, 'pepe', 'asd123', 'pepe@outlook.com', NULL);
+(1, 'admin', '202cb962ac59075b964b07152d234b70', 'admin@gmail.com', NULL),
+(2, 'cliente', '202cb962ac59075b964b07152d234b70', 'cliente@gmail.com', NULL),
+(3, 'deposito', '202cb962ac59075b964b07152d234b70', 'depo@hotmail.com', NULL);
 
 
 
