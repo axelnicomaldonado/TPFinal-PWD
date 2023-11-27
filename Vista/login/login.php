@@ -18,7 +18,7 @@ $datos = data_submitted();
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2 class="mb-4">Inicio de Sesión</h2>
-        <form action="../accion/accionLoginLogout.php" method="post">
+        <form id="form" action="../accion/accionLoginLogout.php" method="post">
     <input id="accion" name="accion" value="login" type="hidden">
     <div class="mb-3">
         <label for="usnombre" class="form-label">Usuario:</label>
@@ -44,5 +44,19 @@ $datos = data_submitted();
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-GLhlTQ8iK1u5lTR+JKTQtbIvaa/9MlQ5ZjEfxIcaF8E/Dq4WygFZB89tiYK31nke" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-s9QDH5ZstEz9R6ZgE3U8rEXHWJQkQcXg9s9qE3LFA+nvMClZ+gTSKtg6LdSmCA7A" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var password = document.getElementById('uspass').value;
+
+            var hashedPassword = md5(password);
+
+            document.getElementById('uspass').value = hashedPassword;
+            
+            this.submit();
+        });
+    </script>
 </body>
 </html>
