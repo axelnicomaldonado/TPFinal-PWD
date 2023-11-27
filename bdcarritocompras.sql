@@ -148,6 +148,14 @@ CREATE TABLE `producto` (
   `prodeshabilitado` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Estructura de tabla para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idproducto`, `pronombre`, `prodetalle`, `procantstock`, `proprecio`, `prodeshabilitado`) VALUES
+(1, 'Fernet', 'Fernet Branca 750ml', 10, 4500, '0000-00-00 00:00:00'),
+(2, 'Cerveza', 'Pack cerveza Quilmes', 12, 3200, '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
