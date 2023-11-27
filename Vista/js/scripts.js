@@ -25,6 +25,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         });
     }
 });
+
+
 function agregarProducto(id, token) {
     console.log("Inicio de la función agregarProducto");
     let url = "../cliente/accion/accionCarrito.php";
@@ -45,6 +47,10 @@ function agregarProducto(id, token) {
                 carrito.textContent = data.numero;
 
                 console.log(data.numero);
+            } else {
+                // Mostrar el modal de stock insuficiente
+                let stockInsuficienteModal = new bootstrap.Modal(document.getElementById('stockInsuficienteModal'));
+                stockInsuficienteModal.show();
             }
         })
         .catch((error) => {
